@@ -424,7 +424,7 @@ img {
 }
 ===== FIN CHAT INPUT TP2 ===== */
 
-/* ===== PANEL ===== */
+/* ===== PANEL (TP2 - CSS original conservado, reemplazado por el grid y las cards de Bootstrap en TP3) =====
 .panel {
   padding: var(--spacing-xl) 0;
   background-color: var(--color-bg-alt);
@@ -477,6 +477,7 @@ img {
   font-weight: 600;
   color: var(--color-primary);
 }
+===== FIN PANEL TP2 ===== */
 
 /* ===== FOOTER ===== */
 .site-footer {
@@ -556,6 +557,7 @@ img {
   }
   */
 
+  /* Responsive de cards y panel TP2 (conservado, reemplazado por las breakpoints de Bootstrap en TP3)
   .cards-grid {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   }
@@ -569,6 +571,7 @@ img {
     width: 100%;
     max-width: 300px;
   }
+  */
 }
 
 @media (max-width: 600px) {
@@ -621,6 +624,7 @@ img {
   }
   */
 
+  /* Responsive de cards, temas y chat TP2 (conservado, reemplazado por las breakpoints de Bootstrap en TP3)
   .cards-grid {
     grid-template-columns: 1fr;
   }
@@ -632,6 +636,11 @@ img {
 
   .chat-mockup {
     max-width: 100%;
+  }
+  */
+
+  .tema-pill {
+    font-size: 0.9rem;
   }
 
   .footer-content {

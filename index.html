@@ -275,27 +275,44 @@
         </div>
       </section>
 
-      <!-- Panel institucional -->
-      <section id="panel" class="panel">
+      <!-- ===== PANEL INSTITUCIONAL (Bootstrap) — refactor/secciones ===== -->
+      <section id="panel" class="py-5 text-center" style="background-color: var(--color-bg-alt);">
         <div class="container">
-          <h2>Panel institucional</h2>
-          <p>
+          <h2 class="fw-bold mb-3" style="color: var(--color-primary);">
+            Panel institucional
+          </h2>
+          <p class="text-body-secondary mx-auto mb-5" style="max-width: 700px;">
             Herramienta para Bedelía, Alumnado y Secretaría: carga y
             actualización de información oficial, bandeja de consultas
             priorizadas derivadas por el asistente, y métricas de uso.
           </p>
-          <div class="panel-features">
-            <div class="panel-item">
-              <span class="panel-icon">📥</span>
-              <span>Carga de datos</span>
+
+          <div class="row justify-content-center g-4">
+            <div class="col-10 col-sm-6 col-lg-3">
+              <div class="card h-100 border-0 shadow-sm align-items-center p-4">
+                <span class="fs-1">📥</span>
+                <span class="fw-semibold mt-2" style="color: var(--color-primary);">
+                  Carga de datos
+                </span>
+              </div>
             </div>
-            <div class="panel-item">
-              <span class="panel-icon">📩</span>
-              <span>Bandeja de consultas</span>
+
+            <div class="col-10 col-sm-6 col-lg-3">
+              <div class="card h-100 border-0 shadow-sm align-items-center p-4">
+                <span class="fs-1">📩</span>
+                <span class="fw-semibold mt-2" style="color: var(--color-primary);">
+                  Bandeja de consultas
+                </span>
+              </div>
             </div>
-            <div class="panel-item">
-              <span class="panel-icon">📈</span>
-              <span>Métricas y reportes</span>
+
+            <div class="col-10 col-sm-6 col-lg-3">
+              <div class="card h-100 border-0 shadow-sm align-items-center p-4">
+                <span class="fs-1">📈</span>
+                <span class="fw-semibold mt-2" style="color: var(--color-primary);">
+                  Métricas y reportes
+                </span>
+              </div>
             </div>
           </div>
         </div>
