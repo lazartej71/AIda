@@ -212,20 +212,29 @@
         </div>
       </section>
 
-      <!-- Asistente conversacional -->
-      <section id="asistente" class="asistente">
+      <!-- ===== ASISTENTE CONVERSACIONAL (Bootstrap) — refactor/secciones ===== -->
+      <section id="asistente" class="py-5 bg-white text-center">
         <div class="container">
-          <h2>Asistente conversacional</h2>
-          <p>
+          <h2 class="fw-bold mb-3" style="color: var(--color-primary);">
+            Asistente conversacional
+          </h2>
+          <p class="text-body-secondary mx-auto mb-5" style="max-width: 600px;">
             Consultá las 24 horas, los 7 días de la semana. El asistente te
             responderá con información oficial y te derivará al panel si es
             necesario.
           </p>
-          <div class="chat-mockup">
-            <div class="chat-header">
-              <span class="chat-avatar">💬</span>
-              <span class="chat-title">AIda</span>
-              <span class="chat-status">● En línea</span>
+
+          <div
+            class="card mx-auto border-0 shadow overflow-hidden text-start"
+            style="max-width: 480px;"
+          >
+            <div
+              class="card-header d-flex align-items-center gap-2 text-white border-0 py-3"
+              style="background-color: var(--color-primary);"
+            >
+              <span class="fs-5">💬</span>
+              <span class="fw-bold flex-grow-1">AIda</span>
+              <span class="small opacity-75">● En línea</span>
             </div>
             <div class="chat-messages">
               <div class="message received">
@@ -244,9 +253,23 @@
                 <span class="time">10:31</span>
               </div>
             </div>
-            <div class="chat-input">
-              <input type="text" placeholder="Escribí tu consulta..." disabled />
-              <button disabled>➤</button>
+            <div class="input-group border-top">
+              <input
+                type="text"
+                class="form-control border-0 shadow-none py-3"
+                placeholder="Escribí tu consulta..."
+                aria-label="Escribí tu consulta"
+                disabled
+              />
+              <button
+                class="btn text-white px-4"
+                type="button"
+                aria-label="Enviar consulta"
+                style="background-color: var(--color-primary);"
+                disabled
+              >
+                ➤
+              </button>
             </div>
           </div>
         </div>

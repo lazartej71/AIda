@@ -282,7 +282,7 @@ img {
   box-shadow: 0 4px 12px rgba(0, 56, 101, 0.25) !important;
 }
 
-/* ===== ASISTENTE ===== */
+/* ===== ASISTENTE (TP2 - CSS original conservado, reemplazado por card e input-group de Bootstrap en TP3) =====
 .asistente {
   padding: var(--spacing-xl) 0;
   background-color: var(--color-bg);
@@ -336,8 +336,11 @@ img {
   opacity: 0.8;
   font-weight: 300;
 }
+===== FIN ASISTENTE TP2 ===== */
 
+/* Burbujas del chat: se conservan activas, Bootstrap no tiene un equivalente */
 .chat-messages {
+  background-color: #f9fafc;
   padding: 1.2rem 1.2rem 0.8rem;
   display: flex;
   flex-direction: column;
@@ -384,6 +387,7 @@ img {
   padding: 0 0.4rem;
 }
 
+/* ===== CHAT INPUT (TP2 - CSS original conservado, reemplazado por input-group de Bootstrap en TP3) =====
 .chat-input {
   display: flex;
   border-top: 1px solid #e2e8f0;
@@ -418,6 +422,7 @@ img {
   background: #cbd5e0;
   cursor: not-allowed;
 }
+===== FIN CHAT INPUT TP2 ===== */
 
 /* ===== PANEL ===== */
 .panel {
