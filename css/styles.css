@@ -47,7 +47,7 @@ img {
   padding: 0 var(--spacing-lg);
 }
 
-/* ===== HEADER ===== */
+/* ===== HEADER (TP2 - CSS original conservado, reemplazado por Bootstrap navbar en TP3) =====
 .site-header {
   background-color: var(--color-primary);
   padding: var(--spacing-md) 0;
@@ -105,8 +105,11 @@ img {
   color: #ffffff;
   text-decoration: none;
 }
+===== FIN HEADER TP2 ===== */
 
-/* ===== HERO ===== */
+/* ===== HERO (TP2 - CSS original conservado, reemplazado por clases Bootstrap en TP3) =====
+   NOTA: .btn-primary de acá abajo tambien es el nombre de una clase nativa de
+   Bootstrap. Se deja comentada para evitar colisiones con los estilos de Bootstrap.
 .hero {
   background: linear-gradient(135deg, rgba(0, 56, 101, 0.85) 0%, rgba(0, 56, 101, 0.65) 100%),
               url('../img/PortadaAIda.png');
@@ -167,6 +170,7 @@ img {
   box-shadow: 0 8px 28px rgba(245, 166, 35, 0.5);
   background: linear-gradient(135deg, #fbb829 0%, #f5a623 100%);
 }
+===== FIN HERO TP2 ===== */
 
 /* ===== CÓMO FUNCIONA ===== */
 .como-funciona {
@@ -514,6 +518,7 @@ img {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
+  /* Responsive del hero TP2 (conservado, reemplazado por grid de Bootstrap en TP3)
   .hero-text h1 {
     font-size: 2.4rem;
   }
@@ -527,6 +532,7 @@ img {
     margin-left: auto;
     margin-right: auto;
   }
+  */
 
   .cards-grid {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -548,6 +554,7 @@ img {
     padding: 0 var(--spacing-md);
   }
 
+  /* Responsive del header/nav TP2 (conservado, reemplazado por Bootstrap navbar en TP3)
   .header-content {
     flex-direction: column;
     align-items: stretch;
@@ -575,7 +582,9 @@ img {
     background: rgba(255, 255, 255, 0.1);
     border-radius: var(--border-radius);
   }
+  */
 
+  /* Responsive del hero TP2 (conservado, reemplazado por Bootstrap en TP3)
   .hero {
     min-height: auto;
     padding: var(--spacing-lg) 0;
@@ -588,6 +597,7 @@ img {
   .hero-text .subtitle {
     font-size: 1rem;
   }
+  */
 
   .cards-grid {
     grid-template-columns: 1fr;
