@@ -479,7 +479,7 @@ img {
 }
 ===== FIN PANEL TP2 ===== */
 
-/* ===== FOOTER ===== */
+/* ===== FOOTER (TP2 - CSS original conservado, reemplazado por utilidades flex de Bootstrap en TP3) =====
 .site-footer {
   background-color: var(--color-primary-dark);
   color: var(--color-white);
@@ -528,15 +528,25 @@ img {
   transition: var(--transition);
 }
 
-.footer-social a:hover {
-  opacity: 1;
-  transform: scale(1.1);
-}
-
 .footer-logo img {
   height: 60px;
   width: auto;
   opacity: 0.9;
+}
+===== FIN FOOTER TP2 ===== */
+
+/* Interaccion de los iconos sociales: se conserva activa, Bootstrap no la trae */
+.footer-social-link {
+  text-decoration: none;
+  opacity: 0.7;
+  transition: var(--transition);
+  display: inline-block;
+}
+
+.footer-social-link:hover {
+  opacity: 1;
+  transform: scale(1.1);
+  color: var(--color-white);
 }
 
 /* ===== RESPONSIVE ===== */
@@ -643,6 +653,7 @@ img {
     font-size: 0.9rem;
   }
 
+  /* Responsive del footer TP2 (conservado, reemplazado por flex-column/flex-md-row de Bootstrap en TP3)
   .footer-content {
     flex-direction: column;
     text-align: center;
@@ -655,4 +666,5 @@ img {
   .footer-logo img {
     height: 50px;
   }
+  */
 }
