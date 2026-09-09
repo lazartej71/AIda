@@ -41,11 +41,16 @@ img {
   display: block;
 }
 
+/* ===== CONTAINER (TP2 - CSS original conservado, reemplazado por el .container de Bootstrap en TP3) =====
+   NOTA: .container es una clase nativa de Bootstrap y la usan todas las secciones.
+   Esta regla propia pisaba los anchos responsive de Bootstrap (540 / 720 / 960 / 1140px),
+   por eso se comenta y se deja que Bootstrap maneje el contenedor.
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 var(--spacing-lg);
 }
+===== FIN CONTAINER TP2 ===== */
 
 /* ===== HEADER (TP2 - CSS original conservado, reemplazado por Bootstrap navbar en TP3) =====
 .site-header {
@@ -585,9 +590,11 @@ img {
 }
 
 @media (max-width: 600px) {
+  /* Padding del container TP2 (conservado, ahora lo maneja el gutter de Bootstrap)
   .container {
     padding: 0 var(--spacing-md);
   }
+  */
 
   /* Responsive del header/nav TP2 (conservado, reemplazado por Bootstrap navbar en TP3)
   .header-content {
