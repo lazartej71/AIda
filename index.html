@@ -117,35 +117,67 @@
         </div>
       </section>
 
-      <!-- Cómo funciona -->
-      <section id="como-funciona" class="como-funciona">
+      <!-- ===== CÓMO FUNCIONA (Bootstrap) — refactor/secciones ===== -->
+      <section id="como-funciona" class="py-5 bg-white">
         <div class="container">
-          <h2>Cómo funciona</h2>
-          <div class="cards-grid">
-            <article class="card">
-              <div class="card-icon">📊</div>
-              <h3>Datos exactos</h3>
-              <p>
-                Fechas de mesas, correlativas y aranceles se resuelven por
-                consulta directa a la base de datos, no por generación de texto.
-              </p>
-            </article>
-            <article class="card">
-              <div class="card-icon">📄</div>
-              <h3>Procedimientos y reglamentos</h3>
-              <p>
-                Se responden recuperando el documento oficial correspondiente,
-                citando siempre la fuente y su fecha de actualización.
-              </p>
-            </article>
-            <article class="card">
-              <div class="card-icon">🛑</div>
-              <h3>Política de abstención</h3>
-              <p>
-                Si el asistente no tiene evidencia suficiente, no inventa una
-                respuesta: deriva la consulta al panel institucional.
-              </p>
-            </article>
+          <h2 class="text-center fw-bold mb-5" style="color: var(--color-primary);">
+            Cómo funciona
+          </h2>
+
+          <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+              <article
+                class="card h-100 text-center border-0 shadow-sm"
+                style="background-color: var(--color-bg-alt); border-left: 6px solid var(--color-primary-light) !important;"
+              >
+                <div class="card-body p-4">
+                  <div class="fs-1 mb-2">📊</div>
+                  <h3 class="card-title h5 fw-bold" style="color: var(--color-primary);">
+                    Datos exactos
+                  </h3>
+                  <p class="card-text small text-body-secondary">
+                    Fechas de mesas, correlativas y aranceles se resuelven por
+                    consulta directa a la base de datos, no por generación de texto.
+                  </p>
+                </div>
+              </article>
+            </div>
+
+            <div class="col">
+              <article
+                class="card h-100 text-center border-0 shadow-sm"
+                style="background-color: var(--color-bg-alt); border-left: 6px solid var(--color-primary-light) !important;"
+              >
+                <div class="card-body p-4">
+                  <div class="fs-1 mb-2">📄</div>
+                  <h3 class="card-title h5 fw-bold" style="color: var(--color-primary);">
+                    Procedimientos y reglamentos
+                  </h3>
+                  <p class="card-text small text-body-secondary">
+                    Se responden recuperando el documento oficial correspondiente,
+                    citando siempre la fuente y su fecha de actualización.
+                  </p>
+                </div>
+              </article>
+            </div>
+
+            <div class="col">
+              <article
+                class="card h-100 text-center border-0 shadow-sm"
+                style="background-color: var(--color-bg-alt); border-left: 6px solid var(--color-primary-light) !important;"
+              >
+                <div class="card-body p-4">
+                  <div class="fs-1 mb-2">🛑</div>
+                  <h3 class="card-title h5 fw-bold" style="color: var(--color-primary);">
+                    Política de abstención
+                  </h3>
+                  <p class="card-text small text-body-secondary">
+                    Si el asistente no tiene evidencia suficiente, no inventa una
+                    respuesta: deriva la consulta al panel institucional.
+                  </p>
+                </div>
+              </article>
+            </div>
           </div>
         </div>
       </section>

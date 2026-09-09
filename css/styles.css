@@ -172,7 +172,9 @@ img {
 }
 ===== FIN HERO TP2 ===== */
 
-/* ===== CÓMO FUNCIONA ===== */
+/* ===== CÓMO FUNCIONA (TP2 - CSS original conservado, reemplazado por grid y cards de Bootstrap en TP3) =====
+   NOTA: .card de acá abajo tambien es el nombre de una clase nativa de Bootstrap.
+   Se deja comentada para evitar colisiones con los estilos de Bootstrap.
 .como-funciona {
   padding: var(--spacing-xl) 0;
   background-color: var(--color-bg);
@@ -202,11 +204,6 @@ img {
   text-align: center;
 }
 
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
-}
-
 .card-icon {
   font-size: 2.6rem;
   margin-bottom: var(--spacing-sm);
@@ -222,6 +219,17 @@ img {
 .card p {
   color: var(--color-text-light);
   font-size: 0.95rem;
+}
+===== FIN CÓMO FUNCIONA TP2 ===== */
+
+/* Hover de las cards: se conserva activo porque Bootstrap no lo trae por defecto */
+.card {
+  transition: var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12) !important;
 }
 
 /* ===== TEMAS ===== */
