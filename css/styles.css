@@ -232,7 +232,7 @@ img {
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12) !important;
 }
 
-/* ===== TEMAS ===== */
+/* ===== TEMAS (TP2 - CSS original conservado, reemplazado por utilidades de Bootstrap en TP3) =====
 .temas {
   padding: var(--spacing-xl) 0;
   background-color: var(--color-bg-alt);
@@ -265,12 +265,21 @@ img {
   border: 1px solid rgba(0, 56, 101, 0.12);
   transition: var(--transition);
 }
+===== FIN TEMAS TP2 ===== */
 
-.temas-grid li:hover {
-  background-color: var(--color-primary);
+/* Color e interaccion de las pills: Bootstrap resuelve la caja, esto aporta la identidad de AIda */
+.tema-pill {
+  color: var(--color-primary);
+  font-weight: 500;
+  transition: var(--transition);
+  cursor: default;
+}
+
+.tema-pill:hover {
+  background-color: var(--color-primary) !important;
   color: var(--color-white);
   transform: scale(1.04);
-  box-shadow: 0 4px 12px rgba(0, 56, 101, 0.25);
+  box-shadow: 0 4px 12px rgba(0, 56, 101, 0.25) !important;
 }
 
 /* ===== ASISTENTE ===== */
