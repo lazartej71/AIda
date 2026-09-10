@@ -45,7 +45,7 @@
 
     <link rel="stylesheet" href="./css/styles.css" />
 
-    <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="img/favicon.png" type="image/png" />
   </head>
   <body>
     <!-- ===== NAVBAR (Bootstrap) — refactor/navbar ===== -->
@@ -93,7 +93,7 @@
         style="
           min-height: 80vh;
           background: linear-gradient(135deg, rgba(0, 56, 101, 0.85) 0%, rgba(0, 56, 101, 0.65) 100%),
-            url('img/PortadaAIda.png');
+            url('img/PortadaAIda.jpg');
           background-size: cover;
           background-position: center center;
         "
@@ -319,22 +319,38 @@
       </section>
     </main>
 
-    <footer id="equipo" class="site-footer">
-      <div class="container footer-content">
-        <div class="footer-info">
-          <p class="footer-utn">Universidad Tecnológica Nacional – Facultad Regional Tucumán</p>
-          <p class="footer-carrera">Tecnicatura Universitaria en Programación – Trabajo Final</p>
-          <p class="equipo-list">
-            Lazarte, Jorge Exequiel · Díaz, Juan Gabriel
-          </p>
-          <div class="footer-social">
-            <a href="#" aria-label="Instagram">📷</a>
-            <a href="#" aria-label="Twitter">🐦</a>
-            <a href="#" aria-label="LinkedIn">🔗</a>
+    <!-- ===== FOOTER (Bootstrap) — refactor/footer ===== -->
+    <footer id="equipo" class="text-white py-4" style="background-color: var(--color-primary-dark);">
+      <div class="container">
+        <div
+          class="d-flex flex-column flex-md-row justify-content-between align-items-center text-center text-md-start gap-3"
+        >
+          <div>
+            <p class="fw-semibold fs-6 mb-1">
+              Universidad Tecnológica Nacional – Facultad Regional Tucumán
+            </p>
+            <p class="fw-light opacity-75 mb-1">
+              Tecnicatura Universitaria en Programación – Trabajo Final
+            </p>
+            <p class="fw-light opacity-75 small mb-2">
+              Lazarte, Jorge Exequiel · Díaz, Juan Gabriel
+            </p>
+
+            <div class="d-flex gap-3 justify-content-center justify-content-md-start">
+              <a href="#" class="footer-social-link fs-4 text-white" aria-label="Instagram">📷</a>
+              <a href="#" class="footer-social-link fs-4 text-white" aria-label="Twitter">🐦</a>
+              <a href="#" class="footer-social-link fs-4 text-white" aria-label="LinkedIn">🔗</a>
+            </div>
           </div>
-        </div>
-        <div class="footer-logo">
-          <img src="img/logoAIda.png" alt="Logo UTN FRT" />
+
+          <div>
+            <img
+              src="img/logoAIda.png"
+              alt="Logo de AIda, asistente institucional de la UTN FRT"
+              class="opacity-75"
+              style="height: 60px; width: auto;"
+            />
+          </div>
         </div>
       </div>
     </footer>
