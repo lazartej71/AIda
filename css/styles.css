@@ -47,7 +47,7 @@ img {
   padding: 0 var(--spacing-lg);
 }
 
-/* ===== HEADER ===== */
+/* ===== HEADER (TP2 - CSS original conservado, reemplazado por Bootstrap navbar en TP3) =====
 .site-header {
   background-color: var(--color-primary);
   padding: var(--spacing-md) 0;
@@ -105,8 +105,11 @@ img {
   color: #ffffff;
   text-decoration: none;
 }
+===== FIN HEADER TP2 ===== */
 
-/* ===== HERO ===== */
+/* ===== HERO (TP2 - CSS original conservado, reemplazado por clases Bootstrap en TP3) =====
+   NOTA: .btn-primary de acá abajo tambien es el nombre de una clase nativa de
+   Bootstrap. Se deja comentada para evitar colisiones con los estilos de Bootstrap.
 .hero {
   background: linear-gradient(135deg, rgba(0, 56, 101, 0.85) 0%, rgba(0, 56, 101, 0.65) 100%),
               url('../img/PortadaAIda.png');
@@ -167,8 +170,11 @@ img {
   box-shadow: 0 8px 28px rgba(245, 166, 35, 0.5);
   background: linear-gradient(135deg, #fbb829 0%, #f5a623 100%);
 }
+===== FIN HERO TP2 ===== */
 
-/* ===== CÓMO FUNCIONA ===== */
+/* ===== CÓMO FUNCIONA (TP2 - CSS original conservado, reemplazado por grid y cards de Bootstrap en TP3) =====
+   NOTA: .card de acá abajo tambien es el nombre de una clase nativa de Bootstrap.
+   Se deja comentada para evitar colisiones con los estilos de Bootstrap.
 .como-funciona {
   padding: var(--spacing-xl) 0;
   background-color: var(--color-bg);
@@ -198,11 +204,6 @@ img {
   text-align: center;
 }
 
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
-}
-
 .card-icon {
   font-size: 2.6rem;
   margin-bottom: var(--spacing-sm);
@@ -219,8 +220,19 @@ img {
   color: var(--color-text-light);
   font-size: 0.95rem;
 }
+===== FIN CÓMO FUNCIONA TP2 ===== */
 
-/* ===== TEMAS ===== */
+/* Hover de las cards: se conserva activo porque Bootstrap no lo trae por defecto */
+.card {
+  transition: var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* ===== TEMAS (TP2 - CSS original conservado, reemplazado por utilidades de Bootstrap en TP3) =====
 .temas {
   padding: var(--spacing-xl) 0;
   background-color: var(--color-bg-alt);
@@ -253,15 +265,24 @@ img {
   border: 1px solid rgba(0, 56, 101, 0.12);
   transition: var(--transition);
 }
+===== FIN TEMAS TP2 ===== */
 
-.temas-grid li:hover {
-  background-color: var(--color-primary);
-  color: var(--color-white);
-  transform: scale(1.04);
-  box-shadow: 0 4px 12px rgba(0, 56, 101, 0.25);
+/* Color e interaccion de las pills: Bootstrap resuelve la caja, esto aporta la identidad de AIda */
+.tema-pill {
+  color: var(--color-primary);
+  font-weight: 500;
+  transition: var(--transition);
+  cursor: default;
 }
 
-/* ===== ASISTENTE ===== */
+.tema-pill:hover {
+  background-color: var(--color-primary) !important;
+  color: var(--color-white);
+  transform: scale(1.04);
+  box-shadow: 0 4px 12px rgba(0, 56, 101, 0.25) !important;
+}
+
+/* ===== ASISTENTE (TP2 - CSS original conservado, reemplazado por card e input-group de Bootstrap en TP3) =====
 .asistente {
   padding: var(--spacing-xl) 0;
   background-color: var(--color-bg);
@@ -315,8 +336,11 @@ img {
   opacity: 0.8;
   font-weight: 300;
 }
+===== FIN ASISTENTE TP2 ===== */
 
+/* Burbujas del chat: se conservan activas, Bootstrap no tiene un equivalente */
 .chat-messages {
+  background-color: #f9fafc;
   padding: 1.2rem 1.2rem 0.8rem;
   display: flex;
   flex-direction: column;
@@ -363,6 +387,7 @@ img {
   padding: 0 0.4rem;
 }
 
+/* ===== CHAT INPUT (TP2 - CSS original conservado, reemplazado por input-group de Bootstrap en TP3) =====
 .chat-input {
   display: flex;
   border-top: 1px solid #e2e8f0;
@@ -397,8 +422,9 @@ img {
   background: #cbd5e0;
   cursor: not-allowed;
 }
+===== FIN CHAT INPUT TP2 ===== */
 
-/* ===== PANEL ===== */
+/* ===== PANEL (TP2 - CSS original conservado, reemplazado por el grid y las cards de Bootstrap en TP3) =====
 .panel {
   padding: var(--spacing-xl) 0;
   background-color: var(--color-bg-alt);
@@ -451,6 +477,7 @@ img {
   font-weight: 600;
   color: var(--color-primary);
 }
+===== FIN PANEL TP2 ===== */
 
 /* ===== FOOTER ===== */
 .site-footer {
@@ -514,6 +541,7 @@ img {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
+  /* Responsive del hero TP2 (conservado, reemplazado por grid de Bootstrap en TP3)
   .hero-text h1 {
     font-size: 2.4rem;
   }
@@ -527,7 +555,9 @@ img {
     margin-left: auto;
     margin-right: auto;
   }
+  */
 
+  /* Responsive de cards y panel TP2 (conservado, reemplazado por las breakpoints de Bootstrap en TP3)
   .cards-grid {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   }
@@ -541,6 +571,7 @@ img {
     width: 100%;
     max-width: 300px;
   }
+  */
 }
 
 @media (max-width: 600px) {
@@ -548,6 +579,7 @@ img {
     padding: 0 var(--spacing-md);
   }
 
+  /* Responsive del header/nav TP2 (conservado, reemplazado por Bootstrap navbar en TP3)
   .header-content {
     flex-direction: column;
     align-items: stretch;
@@ -575,7 +607,9 @@ img {
     background: rgba(255, 255, 255, 0.1);
     border-radius: var(--border-radius);
   }
+  */
 
+  /* Responsive del hero TP2 (conservado, reemplazado por Bootstrap en TP3)
   .hero {
     min-height: auto;
     padding: var(--spacing-lg) 0;
@@ -588,7 +622,9 @@ img {
   .hero-text .subtitle {
     font-size: 1rem;
   }
+  */
 
+  /* Responsive de cards, temas y chat TP2 (conservado, reemplazado por las breakpoints de Bootstrap en TP3)
   .cards-grid {
     grid-template-columns: 1fr;
   }
@@ -600,6 +636,11 @@ img {
 
   .chat-mockup {
     max-width: 100%;
+  }
+  */
+
+  .tema-pill {
+    font-size: 0.9rem;
   }
 
   .footer-content {
