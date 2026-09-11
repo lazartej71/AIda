@@ -4,6 +4,8 @@
 
 Sistema de gestión de consultas y conocimiento académico con panel web y asistente conversacional basado en IA.
 
+🔗 **Demo en vivo:** [https://aidautn.netlify.app](https://aidautn.netlify.app)
+
 ## Integrantes
 - Lazarte, Jorge Exequiel
 - Díaz, Juan Gabriel
@@ -13,32 +15,76 @@ AIda es una plataforma integral que centraliza la información académica de la 
 
 ## Tecnologías utilizadas
 - **HTML5 semántico**
-- **CSS3** (variables, Flexbox, Grid, media queries)
-- **Git & GitHub** (control de versiones, ramas `main` y `dev`, Pull Requests)
+- **CSS3** (variables, Flexbox, Grid, media queries) — desarrollado en el TP2
+- **Bootstrap 5** (vía CDN) — interfaz refactorizada en el TP3
+- **Git & GitHub** (control de versiones, ramas `main`/`dev`/`refactor/*`, Pull Requests)
+- **Netlify** (deploy y hosting)
 
-## ¿Dónde utilizaron Flexbox?
-- En el **header**, para distribuir el logo y la navegación horizontalmente.
-- En el **hero**, para alinear el texto y la imagen de forma flexible.
+---
+
+## TP2 — CSS puro (base del proyecto)
+
+> El CSS original de esta etapa se conserva **comentado** (no eliminado) dentro de `css/styles.css`, como respaldo del trabajo realizado.
+
+### ¿Dónde utilizaron Flexbox?
+- En el **header** original, para distribuir el logo y la navegación horizontalmente.
+- En el **hero** original, para alinear el texto de forma flexible.
 - En el **footer**, para separar la información institucional del logo.
 
-## ¿Dónde utilizaron Grid?
-- En la sección **"Cómo funciona"**, donde las tarjetas se organizan en una cuadrícula adaptable (`grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))`).
-- En la sección **"Temas"**, donde los elementos se distribuyen en una cuadrícula responsiva (`grid-template-columns: repeat(auto-fit, minmax(160px, 1fr))`).
+### ¿Dónde utilizaron Grid?
+- En la sección **"Cómo funciona"**, donde las tarjetas se organizaban en una cuadrícula adaptable (`grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))`).
 
-## ¿Qué variables CSS crearon?
+### ¿Qué variables CSS crearon?
 - Colores principales: `--color-primary`, `--color-primary-light`, `--color-primary-dark`
 - Colores de fondo: `--color-bg`, `--color-bg-alt`
 - Colores de texto: `--color-text`, `--color-text-light`
 - Espaciados: `--spacing-sm`, `--spacing-md`, `--spacing-lg`, `--spacing-xl`
 - Otros: `--border-radius`, `--box-shadow`, `--transition`
 
-## ¿Cómo implementaron el Responsive Design?
-Se utilizaron **tres breakpoints** con `@media`:
-- **Escritorio (>900px)**: diseño completo con dos columnas en hero y grid de 3 columnas.
-- **Tablet (600px - 900px)**: el hero pasa a una columna, el grid se reduce a 2 columnas.
-- **Móvil (<600px)**: el header y el nav se apilan verticalmente, los grids pasan a una columna (o dos para temas), y se ajustan tamaños de fuente y espaciados.
+Estas variables se siguen usando en el TP3, combinadas con las clases de Bootstrap (por ejemplo en `style="background-color: var(--color-primary)"`).
 
-Además, se emplearon unidades flexibles como `%`, `vw`, `vh`, `fr`, `rem` y `auto-fit` para que los contenedores se adapten automáticamente al ancho disponible.
+### ¿Cómo implementaron el Responsive Design (TP2)?
+Se utilizaron breakpoints con `@media` (900px y 600px) para adaptar el header, el hero y los grids a tablet y celular, junto con unidades flexibles como `%`, `vh`, `fr` y `rem`.
+
+---
+
+## TP3 — Refactorización con Bootstrap
+
+En esta etapa **no se agregaron funcionalidades nuevas**: se refactorizó la interfaz existente utilizando componentes y utilidades de **Bootstrap 5**, manteniendo el CSS propio del TP2 comentado como respaldo.
+
+### Organización del trabajo (ramas)
+Cada sector de la página se trabajó en una rama independiente, creada desde `dev`:
+
+```
+dev
+├── refactor/navbar-hero      → Lazarte, Jorge Exequiel
+├── refactor/secciones        → Díaz, Juan Gabriel
+├── refactor/footer           → Díaz, Juan Gabriel
+└── refactor/ajustes-globales → correcciones finales (favicon, imágenes, conflictos con Bootstrap)
+```
+
+Cada rama se integró a `dev` mediante Pull Request con revisión asignada, y finalmente `dev` se mergeó a `main`.
+
+### Componentes de Bootstrap utilizados
+- **Navbar** (`navbar`, `navbar-expand-lg`, `navbar-toggler`, `collapse`) con menú hamburguesa responsive.
+- **Grid system** (`container`, `row`, `col-lg-*`, `row-cols-*`) para el hero, las cards y el panel institucional.
+- **Cards** (`card`, `card-body`, `card-header`) para "Cómo funciona", el mockup del asistente y el panel.
+- **Utilidades de Flexbox** (`d-flex`, `flex-wrap`, `flex-column flex-md-row`, `gap-*`) en la sección "Temas" y el footer.
+- **Input group** (`input-group`, `form-control`) en el mockup del chat.
+- **Botones** (`btn`, `btn-warning`, `btn-lg`, `rounded-pill`).
+- **Utilidades de espaciado y color** (`py-5`, `mb-3`, `text-white`, `shadow-sm`, `bg-white`).
+
+### Manejo de conflictos con clases nativas de Bootstrap
+Durante la refactorización se detectaron nombres de clases propias que colisionaban con clases nativas de Bootstrap:
+- `.container` (propia) pisaba los anchos responsive del `.container` de Bootstrap → se comentó.
+- `.btn-primary` (propia) coincidía con el botón nativo de Bootstrap → se comentó para evitar conflictos de estilos.
+- `.card` (propia) se mantuvo parcialmente activa a propósito, solo para agregar un efecto `hover` que Bootstrap no trae por defecto.
+
+### Responsive Design (TP3)
+El responsive ahora se apoya en el sistema mobile-first de Bootstrap en lugar de media queries propias:
+- `col-lg-7`, `row-cols-1 row-cols-md-3`, `col-10 col-sm-6 col-lg-3` adaptan las columnas automáticamente según el ancho de pantalla.
+- El navbar colapsa a un menú hamburguesa por debajo del breakpoint `lg`.
+- `flex-column flex-md-row` reordena el footer de apilado (mobile) a horizontal (desktop).
 
 ---
 
@@ -46,22 +92,25 @@ Además, se emplearon unidades flexibles como `%`, `vw`, `vh`, `fr`, `rem` y `au
 1. **Título único y descriptivo** en la etiqueta `<title>`.
 2. **Meta descripción** clara y atractiva (`<meta name="description">`).
 3. **Jerarquía de encabezados** correcta: `h1` → `h2` → `h3`.
-4. **Etiquetas semánticas** (`header`, `nav`, `main`, `section`, `article`, `footer`) para mejorar la estructura.
+4. **Etiquetas semánticas** (`nav`, `main`, `section`, `article`, `footer`) para mejorar la estructura del documento.
 5. **Atributos `alt`** en todas las imágenes, describiendo su contenido.
+6. *(Extra)* Etiquetas **Open Graph** (`og:title`, `og:description`, `og:type`) para una mejor presentación al compartir el sitio en redes sociales.
 
 ---
 
-## Instrucciones de uso (Git)
-1. Clonar el repositorio.
-2. Crear y cambiar a la rama `dev`:  
-   `git checkout -b dev`
-3. Realizar los cambios y commits en `dev`.
-4. Subir `dev` al remoto:  
-   `git push origin dev`
-5. Crear un Pull Request desde `dev` hacia `main` en GitHub.
-6. Asignar revisores y, tras la aprobación, fusionar.
+## Estructura del proyecto
+```
+AIda/
+├── css/
+│   └── styles.css
+├── img/
+│   ├── logoAIda.png
+│   ├── PortadaAIda.jpg
+│   └── favicon.png
+├── index.html
+└── README.md
+```
 
----
-
-## Nota
-Este proyecto es puramente educativo y forma parte del Trabajo Final de la Tecnicatura Universitaria en Programación.   
+## Deploy
+El proyecto está desplegado de forma continua en **Netlify** a partir de la rama `main`:
+👉 [https://aidautn.netlify.app](https://aidautn.netlify.app)
