@@ -17,7 +17,8 @@ AIda es una plataforma integral que centraliza la información académica de la 
 - **HTML5 semántico**
 - **CSS3** (variables, Flexbox, Grid, media queries) — desarrollado en el TP2
 - **Bootstrap 5** (vía CDN) — interfaz refactorizada en el TP3
-- **Git & GitHub** (control de versiones, ramas `main`/`dev`/`refactor/*`, Pull Requests)
+- **JavaScript (ES6+)** — interactividad y manipulación del DOM añadidas en el TP4
+- **Git & GitHub** (control de versiones, ramas `main`/`dev`/`refactor/*`/`feature/*`, Pull Requests)
 - **Netlify** (deploy y hosting)
 
 ---
@@ -88,6 +89,46 @@ El responsive ahora se apoya en el sistema mobile-first de Bootstrap en lugar de
 
 ---
 
+## TP4 — JavaScript y DOM
+
+En esta etapa se incorporó **interactividad real** al sitio mediante JavaScript propio (`js/main.js`), sin modificar el diseño ni la identidad visual definidos en el TP3.
+
+### Organización del trabajo (rama)
+```
+dev
+└── feature/funcionalidades-javascript-chat
+```
+
+La rama se creó desde `dev` siguiendo la convención de nombres de tipo `feature/` indicada en la consigna, y se integrará a `dev` mediante Pull Request.
+
+### Funcionalidades implementadas
+
+**1. Chat simulado del asistente AIda**
+- Habilita el input y el botón de envío (antes estáticos con `disabled`).
+- Captura el mensaje del usuario con eventos `click` y `keydown` (tecla Enter).
+- Crea dinámicamente los mensajes en el DOM (`createElement`, `appendChild`, `textContent`) en lugar de tenerlos hardcodeados en el HTML.
+- Devuelve una respuesta simulada según palabras clave de la consulta (mesa, inscripción, correlativa, trámite), coherente con la temática institucional del asistente.
+
+**2. Navbar activo según sección visible**
+- Usa `IntersectionObserver` para detectar qué sección está en pantalla mientras el usuario hace scroll.
+- Resalta el link correspondiente del menú agregando/quitando la clase `.active` con `classList`.
+
+**3. Cierre automático del menú mobile**
+- Al hacer click en un link del navbar en vista mobile, cierra el menú colapsable de Bootstrap automáticamente (`bootstrap.Collapse`), mejorando la usabilidad en pantallas chicas.
+
+### APIs de JavaScript y DOM utilizadas
+- `document.getElementById` / `document.querySelectorAll`
+- `addEventListener` (`click`, `keydown`)
+- `document.createElement`, `appendChild`, `textContent`
+- `classList.add` / `classList.remove`
+- `IntersectionObserver`
+- `setTimeout`
+
+### SEO y diseño (TP4)
+No se modificó ningún meta tag, la jerarquía de encabezados ni los atributos `alt` existentes. Las nuevas funcionalidades usan las variables de color y las clases de Bootstrap ya definidas, manteniendo la identidad visual del sitio.
+
+---
+
 ## Estrategias de SEO implementadas
 1. **Título único y descriptivo** en la etiqueta `<title>`.
 2. **Meta descripción** clara y atractiva (`<meta name="description">`).
@@ -103,6 +144,8 @@ El responsive ahora se apoya en el sistema mobile-first de Bootstrap en lugar de
 AIda/
 ├── css/
 │   └── styles.css
+├── js/
+│   └── main.js
 ├── img/
 │   ├── logoAIda.png
 │   ├── PortadaAIda.jpg
