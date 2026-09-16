@@ -675,3 +675,8 @@ img {
   }
   */
 }
+
+.nav-link.active {
+  color: var(--color-accent) !important;
+  font-weight: 600;
+}
