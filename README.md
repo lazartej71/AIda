@@ -71,7 +71,7 @@ Cada rama se integró a `dev` mediante Pull Request con revisión asignada, y fi
 - **Grid system** (`container`, `row`, `col-lg-*`, `row-cols-*`) para el hero, las cards y el panel institucional.
 - **Cards** (`card`, `card-body`, `card-header`) para "Cómo funciona", el mockup del asistente y el panel.
 - **Utilidades de Flexbox** (`d-flex`, `flex-wrap`, `flex-column flex-md-row`, `gap-*`) en la sección "Temas" y el footer.
-- **Input group** (`input-group`, `form-control`) en el mockup del chat.
+- **Input group** (`input-group`, `form-control`) en el campo de consulta del chat.
 - **Botones** (`btn`, `btn-warning`, `btn-lg`, `rounded-pill`).
 - **Utilidades de espaciado y color** (`py-5`, `mb-3`, `text-white`, `shadow-sm`, `bg-white`).
 
@@ -96,18 +96,35 @@ En esta etapa se incorporó **interactividad real** al sitio mediante JavaScript
 ### Organización del trabajo (rama)
 ```
 dev
-└── feature/funcionalidades-javascript-chat
+├── feature/funcionalidades-javascript-chat
+└── feature/funcionalidades-javascript-ux
 ```
 
-La rama se creó desde `dev` siguiendo la convención de nombres de tipo `feature/` indicada en la consigna, y se integrará a `dev` mediante Pull Request.
+Las ramas se crearon desde `dev` siguiendo la convención de nombres de tipo `feature/` indicada en la consigna, y se integran a `dev` mediante Pull Request. La primera incorporó el chat y la navegación; la segunda lo convirtió en widget flotante y sumó las funcionalidades de interfaz.
 
 ### Funcionalidades implementadas
 
-**1. Chat simulado del asistente AIda**
-- Habilita el input y el botón de envío (antes estáticos con `disabled`).
+**1. Chat virtual de AIda (widget flotante)**
+
+El chat dejó de ser un mockup estático dentro de la página y pasó a ser un **widget flotante**, igual que los asistentes de los sitios institucionales reales. La sección "Asistente" conserva su lugar en el menú y su contenido, pero ahora invita a abrir el widget en vez de mostrar la conversación incrustada.
+
+*Apertura y cierre*
+- Botón flotante fijo abajo a la derecha, con el logo de AIda y la leyenda "Chat virtual".
+- Se abre desde ese botón, desde el llamado a la acción de la sección "Asistente", y se cierra con la **tecla Escape** o con la cruz del encabezado.
+- La visibilidad se controla con la propiedad `hidden` del elemento, y el estado se refleja en `aria-expanded` para lectores de pantalla.
+- Al abrirse el foco pasa al campo de texto, y al cerrarse vuelve al botón flotante.
+
+*Conversación*
 - Captura el mensaje del usuario con eventos `click` y `keydown` (tecla Enter).
 - Crea dinámicamente los mensajes en el DOM (`createElement`, `appendChild`, `textContent`) en lugar de tenerlos hardcodeados en el HTML.
 - Devuelve una respuesta simulada según palabras clave de la consulta (mesa, inscripción, correlativa, trámite), coherente con la temática institucional del asistente.
+- Las consultas se comparan **sin tildes ni mayúsculas** (`normalize("NFD")`), de modo que "trámite" y "tramite" se resuelven igual sin duplicar cada palabra clave.
+- **Chips de consultas sugeridas**: cuatro botones con las preguntas más frecuentes que completan y envían la consulta de un toque.
+- Si ninguna palabra clave coincide, responde que no tiene evidencia suficiente y deriva al panel institucional, aplicando la **política de abstención** que define el proyecto.
+
+*Accesibilidad y responsive*
+- El contenedor de mensajes es una región `aria-live="polite"` con `role="log"`, así los lectores de pantalla anuncian cada respuesta nueva.
+- En pantallas chicas el widget ocupa casi toda la pantalla y el botón flotante se reduce al logo, para no tapar el contenido.
 
 **2. Navbar activo según sección visible**
 - Usa `IntersectionObserver` para detectar qué sección está en pantalla mientras el usuario hace scroll.
@@ -120,7 +137,10 @@ La rama se creó desde `dev` siguiendo la convención de nombres de tipo `featur
 - `document.getElementById` / `document.querySelectorAll`
 - `addEventListener` (`click`, `keydown`)
 - `document.createElement`, `appendChild`, `textContent`
-- `classList.add` / `classList.remove`
+- `classList.add` / `classList.remove` / `classList.toggle`
+- `setAttribute` / `removeAttribute` (`aria-expanded`, `aria-current`)
+- Propiedad `hidden` y `focus()` para mostrar, ocultar y enfocar el widget
+- `String.prototype.normalize` para comparar texto sin tildes
 - `IntersectionObserver`
 - `setTimeout`
 
