@@ -78,6 +78,16 @@
             <li class="nav-item"><a class="nav-link" href="#panel">Panel institucional</a></li>
             <li class="nav-item"><a class="nav-link" href="#equipo">Equipo</a></li>
           </ul>
+
+          <button
+            class="btn btn-outline-light btn-sm rounded-pill ms-xl-3 mt-3 mt-xl-0 px-3"
+            type="button"
+            id="temaToggle"
+            aria-label="Cambiar entre modo claro y oscuro"
+          >
+            <span id="temaIcono">🌙</span>
+            <span id="temaTexto">Modo oscuro</span>
+          </button>
         </div>
       </div>
     </nav>
@@ -113,9 +123,9 @@
         </div>
       </section>
 
-      <section id="como-funciona" class="py-5 bg-white">
+      <section id="como-funciona" class="py-5" style="background-color: var(--color-bg);">
         <div class="container">
-          <h2 class="text-center fw-bold mb-5" style="color: var(--color-primary);">
+          <h2 class="text-center fw-bold mb-5" style="color: var(--color-heading);">
             Cómo funciona
           </h2>
 
@@ -127,7 +137,7 @@
               >
                 <div class="card-body p-4">
                   <div class="fs-1 mb-2">📊</div>
-                  <h3 class="card-title h5 fw-bold" style="color: var(--color-primary);">
+                  <h3 class="card-title h5 fw-bold" style="color: var(--color-heading);">
                     Datos exactos
                   </h3>
                   <p class="card-text small text-body-secondary">
@@ -145,7 +155,7 @@
               >
                 <div class="card-body p-4">
                   <div class="fs-1 mb-2">📄</div>
-                  <h3 class="card-title h5 fw-bold" style="color: var(--color-primary);">
+                  <h3 class="card-title h5 fw-bold" style="color: var(--color-heading);">
                     Procedimientos y reglamentos
                   </h3>
                   <p class="card-text small text-body-secondary">
@@ -163,7 +173,7 @@
               >
                 <div class="card-body p-4">
                   <div class="fs-1 mb-2">🛑</div>
-                  <h3 class="card-title h5 fw-bold" style="color: var(--color-primary);">
+                  <h3 class="card-title h5 fw-bold" style="color: var(--color-heading);">
                     Política de abstención
                   </h3>
                   <p class="card-text small text-body-secondary">
@@ -179,36 +189,36 @@
 
       <section id="temas" class="py-5" style="background-color: var(--color-bg-alt);">
         <div class="container">
-          <h2 class="text-center fw-bold mb-5" style="color: var(--color-primary);">
+          <h2 class="text-center fw-bold mb-5" style="color: var(--color-heading);">
             Temas que cubre
           </h2>
 
           <ul class="list-unstyled d-flex flex-wrap justify-content-center gap-3 mb-0">
-            <li class="tema-pill bg-white rounded-pill px-4 py-2 shadow-sm border">
+            <li class="tema-pill rounded-pill px-4 py-2 shadow-sm">
               📅 Mesas de examen
             </li>
-            <li class="tema-pill bg-white rounded-pill px-4 py-2 shadow-sm border">
+            <li class="tema-pill rounded-pill px-4 py-2 shadow-sm">
               📝 Inscripciones
             </li>
-            <li class="tema-pill bg-white rounded-pill px-4 py-2 shadow-sm border">
+            <li class="tema-pill rounded-pill px-4 py-2 shadow-sm">
               🔗 Correlativas
             </li>
-            <li class="tema-pill bg-white rounded-pill px-4 py-2 shadow-sm border">
+            <li class="tema-pill rounded-pill px-4 py-2 shadow-sm">
               📋 Trámites administrativos
             </li>
-            <li class="tema-pill bg-white rounded-pill px-4 py-2 shadow-sm border">
+            <li class="tema-pill rounded-pill px-4 py-2 shadow-sm">
               🎓 Ingreso de nuevos estudiantes
             </li>
-            <li class="tema-pill bg-white rounded-pill px-4 py-2 shadow-sm border">
+            <li class="tema-pill rounded-pill px-4 py-2 shadow-sm">
               🗓️ Calendario académico
             </li>
           </ul>
         </div>
       </section>
 
-      <section id="asistente" class="py-5 bg-white text-center">
+      <section id="asistente" class="py-5 text-center" style="background-color: var(--color-bg);">
         <div class="container">
-          <h2 class="fw-bold mb-3" style="color: var(--color-primary);">
+          <h2 class="fw-bold mb-3" style="color: var(--color-heading);">
             Asistente conversacional
           </h2>
           <p class="text-body-secondary mx-auto mb-5" style="max-width: 600px;">
@@ -234,7 +244,7 @@
 
       <section id="panel" class="py-5 text-center" style="background-color: var(--color-bg-alt);">
         <div class="container">
-          <h2 class="fw-bold mb-3" style="color: var(--color-primary);">
+          <h2 class="fw-bold mb-3" style="color: var(--color-heading);">
             Panel institucional
           </h2>
           <p class="text-body-secondary mx-auto mb-5" style="max-width: 700px;">
@@ -247,7 +257,7 @@
             <div class="col-10 col-sm-6 col-lg-3">
               <div class="card h-100 border-0 shadow-sm align-items-center p-4">
                 <span class="fs-1">📥</span>
-                <span class="fw-semibold mt-2" style="color: var(--color-primary);">
+                <span class="fw-semibold mt-2" style="color: var(--color-heading);">
                   Carga de datos
                 </span>
               </div>
@@ -256,7 +266,7 @@
             <div class="col-10 col-sm-6 col-lg-3">
               <div class="card h-100 border-0 shadow-sm align-items-center p-4">
                 <span class="fs-1">📩</span>
-                <span class="fw-semibold mt-2" style="color: var(--color-primary);">
+                <span class="fw-semibold mt-2" style="color: var(--color-heading);">
                   Bandeja de consultas
                 </span>
               </div>
@@ -265,7 +275,7 @@
             <div class="col-10 col-sm-6 col-lg-3">
               <div class="card h-100 border-0 shadow-sm align-items-center p-4">
                 <span class="fs-1">📈</span>
-                <span class="fw-semibold mt-2" style="color: var(--color-primary);">
+                <span class="fw-semibold mt-2" style="color: var(--color-heading);">
                   Métricas y reportes
                 </span>
               </div>

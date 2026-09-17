@@ -16,6 +16,23 @@
   --border-radius: 12px;
   --box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   --transition: all 0.25s ease;
+  --color-heading: var(--color-primary);
+  --color-surface: #ffffff;
+  --color-chat-bg: #f9fafc;
+  --color-borde-suave: rgba(0, 56, 101, 0.12);
+}
+
+/* Modo oscuro: redefine las variables para que los estilos inline se adapten solos */
+[data-bs-theme="dark"] {
+  --color-bg: #121821;
+  --color-bg-alt: #1b2430;
+  --color-text: #e6e9ee;
+  --color-text-light: #a8b0bd;
+  --color-heading: #6db3ff;
+  --color-surface: #1b2430;
+  --color-chat-bg: #161e28;
+  --color-borde-suave: rgba(255, 255, 255, 0.16);
+  --box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
 }
 
 * {
@@ -286,7 +303,9 @@ img {
 
 /* Color e interaccion de las pills: Bootstrap resuelve la caja, esto aporta la identidad de AIda */
 .tema-pill {
-  color: var(--color-primary);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-borde-suave);
+  color: var(--color-heading);
   font-weight: 500;
   transition: var(--transition);
   cursor: default;
@@ -324,7 +343,7 @@ img {
   margin: 0 auto;
   border-radius: var(--border-radius);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
-  background-color: #f9fafc;
+  background-color: var(--color-chat-bg);
   overflow: hidden;
   text-align: left;
 }
@@ -466,7 +485,7 @@ img {
 
 /* Burbujas del chat: se conservan activas, Bootstrap no tiene un equivalente */
 .chat-messages {
-  background-color: #f9fafc;
+  background-color: var(--color-chat-bg);
   padding: 1.2rem 1.2rem 0.8rem;
   display: flex;
   flex-direction: column;
@@ -498,7 +517,7 @@ img {
 }
 
 .bubble {
-  background: var(--color-white);
+  background: var(--color-surface);
   padding: 0.6rem 1rem;
   border-radius: 18px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);

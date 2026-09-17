@@ -146,6 +146,39 @@ function inicializarWidgetChat() {
 
 //navbar para resaltar en la seccion que estamos
 
+function inicializarModoOscuro() {
+  const boton = document.getElementById("temaToggle");
+  const icono = document.getElementById("temaIcono");
+  const texto = document.getElementById("temaTexto");
+  const CLAVE = "aida-tema";
+
+  function aplicarTema(tema) {
+    document.documentElement.setAttribute("data-bs-theme", tema);
+
+    if (icono && texto) {
+      const esOscuro = tema === "dark";
+      icono.textContent = esOscuro ? "☀️" : "🌙";
+      texto.textContent = esOscuro ? "Modo claro" : "Modo oscuro";
+    }
+  }
+
+  const guardado = localStorage.getItem(CLAVE);
+  const prefiereOscuro = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  aplicarTema(guardado || (prefiereOscuro ? "dark" : "light"));
+
+  if (!boton) {
+    return;
+  }
+
+  boton.addEventListener("click", () => {
+    const temaActual = document.documentElement.getAttribute("data-bs-theme");
+    const temaNuevo = temaActual === "dark" ? "light" : "dark";
+
+    aplicarTema(temaNuevo);
+    localStorage.setItem(CLAVE, temaNuevo);
+  });
+}
+
 function inicializarNavbarActivo() {
   const secciones = document.querySelectorAll("main section[id], footer[id]");
   const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
@@ -197,6 +230,7 @@ function inicializarCierreMenuMobile() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  inicializarModoOscuro();
   inicializarChat();
   inicializarWidgetChat();
   inicializarNavbarActivo();
