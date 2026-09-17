@@ -6,192 +6,208 @@ function normalizarTexto(texto) {
     .replace(/[\u0300-\u036f]/g, "");
 }
 
-function inicializarChat() {
-  const chatInput = document.getElementById("chatInput");
-  const chatSendBtn = document.getElementById("chatSendBtn");
-  const chatMessages = document.getElementById("chatMessages");
+const respuestasChat = [
+  { palabras: ["mesa", "examen"], texto: "Las mesas de examen se publican en el calendario académico. Podés consultar fechas exactas en el Panel institucional.", fuente: "Calendario académico" },
+  { palabras: ["inscripcion"], texto: "Las inscripciones se gestionan a través del sistema SIU Guaraní. Verificá las fechas vigentes en Bedelía.", fuente: "SIU Guaraní" },
+  { palabras: ["correlativa"], texto: "Las correlativas dependen del plan de estudios de tu carrera. Te recomiendo consultar el reglamento académico oficial.", fuente: "Reglamento académico" },
+  { palabras: ["tramite", "certificado"], texto: "Los trámites administrativos se realizan en Alumnado. Si necesitás un certificado, podés solicitarlo desde el Panel institucional.", fuente: "Alumnado" },
+];
 
-  if (!chatInput || !chatSendBtn || !chatMessages) {
-    return;
+const respuestaPorDefecto = {
+  texto: "No tengo evidencia suficiente para responder con certeza esa consulta. Te recomiendo derivarla al Panel institucional.",
+  fuente: "",
+};
+
+const saludoChat =
+  "Hola, soy AIda. Puedo ayudarte con mesas de examen, inscripciones, correlativas y trámites. ¿Qué necesitás?";
+
+function obtenerRespuesta(consulta) {
+  const consultaNormalizada = normalizarTexto(consulta);
+  const coincidencia = respuestasChat.find((item) =>
+    item.palabras.some((palabra) => consultaNormalizada.includes(palabra))
+  );
+  return coincidencia || respuestaPorDefecto;
+}
+
+function obtenerHoraActual() {
+  const ahora = new Date();
+  const horas = String(ahora.getHours()).padStart(2, "0");
+  const minutos = String(ahora.getMinutes()).padStart(2, "0");
+  return `${horas}:${minutos}`;
+}
+
+// Monta una consola dentro de raiz: se usa tanto en la sección como en el widget flotante
+function montarConsola(raiz) {
+  if (!raiz) {
+    return null;
   }
 
-  const respuestas = [
-    { palabras: ["mesa", "examen"], texto: "Las mesas de examen se publican en el calendario académico. Podés consultar fechas exactas en el Panel institucional.", fuente: "Calendario académico" },
-    { palabras: ["inscripcion"], texto: "Las inscripciones se gestionan a través del sistema SIU Guaraní. Verificá las fechas vigentes en Bedelía.", fuente: "SIU Guaraní" },
-    { palabras: ["correlativa"], texto: "Las correlativas dependen del plan de estudios de tu carrera. Te recomiendo consultar el reglamento académico oficial.", fuente: "Reglamento académico" },
-    { palabras: ["tramite", "certificado"], texto: "Los trámites administrativos se realizan en Alumnado. Si necesitás un certificado, podés solicitarlo desde el Panel institucional.", fuente: "Alumnado" },
-  ];
+  const entrada = raiz.querySelector(".consola-entrada input");
+  const enviar = raiz.querySelector(".consola-entrada button");
+  const registro = raiz.querySelector(".consola-registro");
 
-  const respuestaPorDefecto = {
-    texto: "No tengo evidencia suficiente para responder con certeza esa consulta. Te recomiendo derivarla al Panel institucional.",
-    fuente: "",
-  };
-
-  function obtenerRespuesta(consulta) {
-    const consultaNormalizada = normalizarTexto(consulta);
-    const coincidencia = respuestas.find((item) =>
-      item.palabras.some((palabra) => consultaNormalizada.includes(palabra))
-    );
-    return coincidencia || respuestaPorDefecto;
-  }
-
-  function obtenerHoraActual() {
-    const ahora = new Date();
-    const horas = String(ahora.getHours()).padStart(2, "0");
-    const minutos = String(ahora.getMinutes()).padStart(2, "0");
-    return `${horas}:${minutos}`;
+  if (!entrada || !enviar || !registro) {
+    return null;
   }
 
   function agregarMensaje(texto, tipo, fuente) {
     const mensaje = document.createElement("div");
-    mensaje.classList.add("bd-msg", tipo);
+    mensaje.classList.add("msg", tipo);
 
     const meta = document.createElement("div");
-    meta.className = "bd-msg-meta";
+    meta.className = "msg-meta";
 
-    const canal = document.createElement("span");
-    canal.className = "bd-msg-canal";
-    canal.textContent = tipo === "bd-msg-consulta" ? "vos" : "aida";
+    const quien = document.createElement("span");
+    quien.className = "msg-quien";
+    quien.textContent = tipo === "msg-consulta" ? "vos" : "aida";
 
     const hora = document.createElement("span");
     hora.textContent = obtenerHoraActual();
 
-    meta.appendChild(canal);
+    meta.appendChild(quien);
     meta.appendChild(hora);
 
     const cuerpo = document.createElement("div");
-    cuerpo.className = "bd-msg-cuerpo";
+    cuerpo.className = "msg-cuerpo";
     cuerpo.textContent = texto;
 
     if (fuente) {
       const cita = document.createElement("span");
-      cita.className = "bd-msg-fuente";
-      cita.textContent = `Fuente: ${fuente} · actualización: pendiente de carga`;
+      cita.className = "msg-fuente";
+      cita.textContent = `fuente: ${fuente} · actualización: pendiente de carga`;
       cuerpo.appendChild(cita);
     }
 
     mensaje.appendChild(meta);
     mensaje.appendChild(cuerpo);
-    chatMessages.appendChild(mensaje);
-
-    chatMessages.scrollTop = chatMessages.scrollHeight;
+    registro.appendChild(mensaje);
+    registro.scrollTop = registro.scrollHeight;
   }
 
   function manejarEnvio() {
-    const consulta = chatInput.value.trim();
+    const consulta = entrada.value.trim();
 
     if (consulta === "") {
       return;
     }
 
-    agregarMensaje(consulta, "bd-msg-consulta");
-    chatInput.value = "";
+    agregarMensaje(consulta, "msg-consulta");
+    entrada.value = "";
 
     const redactando = document.createElement("p");
-    redactando.className = "bd-consola-redactando";
+    redactando.className = "redactando";
     redactando.textContent = "redactando";
-    chatMessages.appendChild(redactando);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
+    registro.appendChild(redactando);
+    registro.scrollTop = registro.scrollHeight;
 
     setTimeout(() => {
       redactando.remove();
       const respuesta = obtenerRespuesta(consulta);
-      agregarMensaje(respuesta.texto, "bd-msg-respuesta", respuesta.fuente);
+      agregarMensaje(respuesta.texto, "msg-respuesta", respuesta.fuente);
     }, 700);
   }
 
-  agregarMensaje(
-    "Hola, soy AIda. Puedo ayudarte con mesas de examen, inscripciones, correlativas y trámites. ¿Qué necesitás?",
-    "bd-msg-respuesta"
-  );
+  agregarMensaje(saludoChat, "msg-respuesta");
 
-  chatSendBtn.addEventListener("click", manejarEnvio);
+  enviar.addEventListener("click", manejarEnvio);
 
-  chatInput.addEventListener("keydown", (evento) => {
+  entrada.addEventListener("keydown", (evento) => {
     if (evento.key === "Enter") {
       manejarEnvio();
     }
   });
 
-  document.querySelectorAll("#chatSugerencias .bd-consola-chip").forEach((chip) => {
+  raiz.querySelectorAll(".consola-chips .chip").forEach((chip) => {
     chip.addEventListener("click", () => {
-      chatInput.value = chip.textContent.trim();
+      entrada.value = chip.textContent.trim();
       manejarEnvio();
     });
   });
+
+  return { entrada };
 }
 
-function inicializarWidgetChat() {
-  const launcher = document.getElementById("chatLauncher");
-  const widget = document.getElementById("chatWidget");
-  const botonCerrar = document.getElementById("chatCerrar");
-  const botonSeccion = document.getElementById("chatAbrirSeccion");
-  const chatInput = document.getElementById("chatInput");
+function inicializarChat() {
+  const enSeccion = montarConsola(document.getElementById("consolaSeccion"));
+  const heroCta = document.getElementById("heroCta");
 
-  if (!launcher || !widget) {
+  if (heroCta && enSeccion) {
+    heroCta.addEventListener("click", () => {
+      document.getElementById("asistente").scrollIntoView({ behavior: "smooth" });
+      enSeccion.entrada.focus({ preventScroll: true });
+    });
+  }
+}
+
+function inicializarWidgetFlotante() {
+  const launcher = document.getElementById("chatLauncher");
+  const panel = document.getElementById("chatFlotante");
+
+  if (!launcher || !panel) {
     return;
   }
 
+  const consola = montarConsola(panel);
+  const cerrarBtn = panel.querySelector(".widget-cerrar");
+
   function abrir() {
-    widget.hidden = false;
+    panel.hidden = false;
     launcher.setAttribute("aria-expanded", "true");
 
-    if (chatInput) {
-      chatInput.focus();
+    if (consola) {
+      consola.entrada.focus();
     }
   }
 
   function cerrar() {
-    widget.hidden = true;
+    panel.hidden = true;
     launcher.setAttribute("aria-expanded", "false");
     launcher.focus();
   }
 
   launcher.addEventListener("click", () => {
-    if (widget.hidden) {
+    if (panel.hidden) {
       abrir();
     } else {
       cerrar();
     }
   });
 
-  if (botonCerrar) {
-    botonCerrar.addEventListener("click", cerrar);
-  }
-
-  if (botonSeccion) {
-    botonSeccion.addEventListener("click", abrir);
+  if (cerrarBtn) {
+    cerrarBtn.addEventListener("click", cerrar);
   }
 
   document.addEventListener("keydown", (evento) => {
-    if (evento.key === "Escape" && !widget.hidden) {
+    if (evento.key === "Escape" && !panel.hidden) {
       cerrar();
     }
   });
 }
 
-const preguntasFrecuentes = [
-  {
-    pregunta: "¿Qué es AIda?",
-    respuesta: "AIda es el asistente institucional de la UTN Facultad Regional Tucumán. Responde consultas sobre mesas de examen, inscripciones, correlativas y trámites académicos las 24 horas, citando siempre la fuente oficial y su fecha de actualización.",
-  },
-  {
-    pregunta: "¿Cómo consulto las fechas de las mesas de examen?",
-    respuesta: "Podés preguntárselo directamente al chat virtual. Las fechas exactas se resuelven por consulta a la base de datos institucional, no por generación de texto, así que la respuesta refleja el calendario académico vigente.",
-  },
-  {
-    pregunta: "¿AIda puede ver mi historia académica?",
-    respuesta: "No. En esta versión AIda responde únicamente sobre información pública institucional y no requiere que inicies sesión. Las consultas personalizadas por estudiante quedan fuera del alcance actual porque implican datos personales protegidos por la Ley 25.326.",
-  },
-  {
-    pregunta: "¿Qué pasa si AIda no sabe la respuesta?",
-    respuesta: "No inventa una respuesta. Si no tiene evidencia suficiente, deriva la consulta al panel institucional para que la responda una persona de Bedelía o Alumnado. Esa respuesta humana después se incorpora a la base de conocimiento.",
-  },
-  {
-    pregunta: "¿La información está actualizada?",
-    respuesta: "Sí. El personal de Bedelía, Alumnado y Secretaría carga y actualiza la información oficial desde el panel de gestión, con versionado y fecha de vigencia, de modo que cada dato indica desde cuándo rige.",
-  },
-];
+// Las preguntas se leen del bloque JSON-LD del head: una sola fuente de verdad,
+// que ademas queda estatica en el HTML para que la lean los buscadores.
+function leerPreguntasFrecuentes() {
+  const bloque = document.querySelector('script[type="application/ld+json"]');
+
+  if (!bloque) {
+    return [];
+  }
+
+  try {
+    const datos = JSON.parse(bloque.textContent);
+
+    if (datos["@type"] !== "FAQPage" || !Array.isArray(datos.mainEntity)) {
+      return [];
+    }
+
+    return datos.mainEntity.map((item) => ({
+      pregunta: item.name,
+      respuesta: item.acceptedAnswer ? item.acceptedAnswer.text : "",
+    }));
+  } catch (error) {
+    return [];
+  }
+}
 
 function inicializarFaq() {
   const contenedor = document.getElementById("faqAccordion");
@@ -200,37 +216,47 @@ function inicializarFaq() {
     return;
   }
 
-  preguntasFrecuentes.forEach((item, indice) => {
+  leerPreguntasFrecuentes().forEach((item, indice) => {
     const idCuerpo = `faqCuerpo${indice}`;
+    const numero = String(indice + 1).padStart(2, "0");
 
     const bloque = document.createElement("div");
-    bloque.className = "accordion-item";
+    bloque.className = "accordion-item faq-item";
 
     const encabezado = document.createElement("h3");
     encabezado.className = "accordion-header";
 
     const boton = document.createElement("button");
-    boton.className = "accordion-button collapsed fw-semibold";
+    boton.className = "accordion-button collapsed faq-boton";
     boton.type = "button";
     boton.dataset.bsToggle = "collapse";
     boton.dataset.bsTarget = `#${idCuerpo}`;
     boton.setAttribute("aria-expanded", "false");
     boton.setAttribute("aria-controls", idCuerpo);
-    boton.textContent = item.pregunta;
+
+    const n = document.createElement("span");
+    n.className = "n";
+    n.textContent = numero;
+
+    const titulo = document.createElement("span");
+    titulo.textContent = item.pregunta;
+
+    boton.appendChild(n);
+    boton.appendChild(titulo);
+    encabezado.appendChild(boton);
+
+    const colapso = document.createElement("div");
+    colapso.className = "accordion-collapse collapse";
+    colapso.id = idCuerpo;
+    colapso.dataset.bsParent = "#faqAccordion";
 
     const cuerpo = document.createElement("div");
-    cuerpo.className = "accordion-collapse collapse";
-    cuerpo.id = idCuerpo;
-    cuerpo.dataset.bsParent = "#faqAccordion";
+    cuerpo.className = "accordion-body faq-cuerpo";
+    cuerpo.textContent = item.respuesta;
 
-    const contenido = document.createElement("div");
-    contenido.className = "accordion-body text-body-secondary";
-    contenido.textContent = item.respuesta;
-
-    encabezado.appendChild(boton);
-    cuerpo.appendChild(contenido);
+    colapso.appendChild(cuerpo);
     bloque.appendChild(encabezado);
-    bloque.appendChild(cuerpo);
+    bloque.appendChild(colapso);
     contenedor.appendChild(bloque);
   });
 }
@@ -245,27 +271,48 @@ function inicializarModoOscuro() {
     if (boton) {
       boton.setAttribute("aria-checked", String(tema === "dark"));
     }
+
+    const meta = document.querySelector('meta[name="theme-color"]');
+
+    if (meta) {
+      meta.setAttribute("content", tema === "dark" ? "#0d0d0d" : "#f2f2ee");
+    }
   }
 
-  const guardado = localStorage.getItem(CLAVE);
-  const prefiereOscuro = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  aplicarTema(guardado || (prefiereOscuro ? "dark" : "light"));
+  // El oscuro es el tema principal: solo se sale de ahi por eleccion explicita
+  aplicarTema(localStorage.getItem(CLAVE) || "dark");
 
   if (!boton) {
     return;
   }
 
   boton.addEventListener("click", () => {
-    const temaActual = document.documentElement.getAttribute("data-bs-theme");
-    const temaNuevo = temaActual === "dark" ? "light" : "dark";
+    const actual = document.documentElement.getAttribute("data-bs-theme");
+    const nuevo = actual === "dark" ? "light" : "dark";
 
-    aplicarTema(temaNuevo);
-    localStorage.setItem(CLAVE, temaNuevo);
+    aplicarTema(nuevo);
+    localStorage.setItem(CLAVE, nuevo);
+  });
+}
+
+function inicializarCierreMenuMobile() {
+  const navMenu = document.getElementById("navMenu");
+
+  if (!navMenu) {
+    return;
+  }
+
+  navMenu.querySelectorAll(".nav-link").forEach((link) => {
+    link.addEventListener("click", () => {
+      if (navMenu.classList.contains("show")) {
+        bootstrap.Collapse.getOrCreateInstance(navMenu).hide();
+      }
+    });
   });
 }
 
 function inicializarNavbarActivo() {
-  const secciones = document.querySelectorAll("main section[id], footer[id]");
+  const secciones = document.querySelectorAll("section[id], footer[id]");
   const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
 
   const observador = new IntersectionObserver(
@@ -293,30 +340,30 @@ function inicializarNavbarActivo() {
   secciones.forEach((seccion) => observador.observe(seccion));
 }
 
-function inicializarCierreMenuMobile() {
-  const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
-  const navMenu = document.getElementById("navMenu");
+function inicializarReveal() {
+  const elementos = document.querySelectorAll(".reveal");
 
-  if (!navMenu) {
-    return;
-  }
+  const observador = new IntersectionObserver(
+    (entradas, obs) => {
+      entradas.forEach((entrada) => {
+        if (entrada.isIntersecting) {
+          entrada.target.classList.add("in");
+          obs.unobserve(entrada.target);
+        }
+      });
+    },
+    { rootMargin: "0px 0px -10% 0px" }
+  );
 
-  navLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      const menuAbierto = navMenu.classList.contains("show");
-      if (menuAbierto) {
-        const bsCollapse = bootstrap.Collapse.getOrCreateInstance(navMenu);
-        bsCollapse.hide();
-      }
-    });
-  });
+  elementos.forEach((elemento) => observador.observe(elemento));
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   inicializarModoOscuro();
+  inicializarReveal();
+  inicializarCierreMenuMobile();
   inicializarFaq();
   inicializarChat();
-  inicializarWidgetChat();
+  inicializarWidgetFlotante();
   inicializarNavbarActivo();
-  inicializarCierreMenuMobile();
 });
