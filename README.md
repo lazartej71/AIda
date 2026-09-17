@@ -69,7 +69,7 @@ Cada rama se integró a `dev` mediante Pull Request con revisión asignada, y fi
 ### Componentes de Bootstrap utilizados
 - **Navbar** (`navbar`, `navbar-expand-lg`, `navbar-toggler`, `collapse`) con menú hamburguesa responsive.
 - **Grid system** (`container`, `row`, `col-lg-*`, `row-cols-*`) para el hero, las cards y el panel institucional.
-- **Cards** (`card`, `card-body`, `card-header`) para "Cómo funciona", el mockup del asistente y el panel.
+- **Cards** (`card`, `card-body`, `card-header`) para "Cómo funciona", el chat del asistente y el panel.
 - **Utilidades de Flexbox** (`d-flex`, `flex-wrap`, `flex-column flex-md-row`, `gap-*`) en la sección "Temas" y el footer.
 - **Input group** (`input-group`, `form-control`) en el campo de consulta del chat.
 - **Botones** (`btn`, `btn-warning`, `btn-lg`, `rounded-pill`).
