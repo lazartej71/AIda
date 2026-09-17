@@ -44,6 +44,55 @@
     <link rel="stylesheet" href="./css/styles.css" />
 
     <link rel="icon" href="img/favicon.png" type="image/png" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Qué es AIda?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "AIda es el asistente institucional de la UTN Facultad Regional Tucumán. Responde consultas sobre mesas de examen, inscripciones, correlativas y trámites académicos las 24 horas, citando siempre la fuente oficial y su fecha de actualización."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cómo consulto las fechas de las mesas de examen?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Podés preguntárselo directamente al chat virtual. Las fechas exactas se resuelven por consulta a la base de datos institucional, no por generación de texto, así que la respuesta refleja el calendario académico vigente."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿AIda puede ver mi historia académica?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. En esta versión AIda responde únicamente sobre información pública institucional y no requiere que inicies sesión. Las consultas personalizadas por estudiante quedan fuera del alcance actual porque implican datos personales protegidos por la Ley 25.326."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué pasa si AIda no sabe la respuesta?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No inventa una respuesta. Si no tiene evidencia suficiente, deriva la consulta al panel institucional para que la responda una persona de Bedelía o Alumnado. Esa respuesta humana después se incorpora a la base de conocimiento."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿La información está actualizada?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí. El personal de Bedelía, Alumnado y Secretaría carga y actualiza la información oficial desde el panel de gestión, con versionado y fecha de vigencia, de modo que cada dato indica desde cuándo rige."
+            }
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow-sm" style="background-color: var(--color-primary);">
@@ -76,6 +125,7 @@
             <li class="nav-item"><a class="nav-link" href="#temas">Temas</a></li>
             <li class="nav-item"><a class="nav-link" href="#asistente">Asistente</a></li>
             <li class="nav-item"><a class="nav-link" href="#panel">Panel institucional</a></li>
+            <li class="nav-item"><a class="nav-link" href="#faq">Preguntas frecuentes</a></li>
             <li class="nav-item"><a class="nav-link" href="#equipo">Equipo</a></li>
           </ul>
 
@@ -281,6 +331,16 @@
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section id="faq" class="py-5" style="background-color: var(--color-bg);">
+        <div class="container">
+          <h2 class="text-center fw-bold mb-5" style="color: var(--color-heading);">
+            Preguntas frecuentes
+          </h2>
+
+          <div class="accordion mx-auto" id="faqAccordion" style="max-width: 760px;"></div>
         </div>
       </section>
     </main>

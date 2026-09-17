@@ -146,6 +146,71 @@ function inicializarWidgetChat() {
 
 //navbar para resaltar en la seccion que estamos
 
+const preguntasFrecuentes = [
+  {
+    pregunta: "¿Qué es AIda?",
+    respuesta: "AIda es el asistente institucional de la UTN Facultad Regional Tucumán. Responde consultas sobre mesas de examen, inscripciones, correlativas y trámites académicos las 24 horas, citando siempre la fuente oficial y su fecha de actualización.",
+  },
+  {
+    pregunta: "¿Cómo consulto las fechas de las mesas de examen?",
+    respuesta: "Podés preguntárselo directamente al chat virtual. Las fechas exactas se resuelven por consulta a la base de datos institucional, no por generación de texto, así que la respuesta refleja el calendario académico vigente.",
+  },
+  {
+    pregunta: "¿AIda puede ver mi historia académica?",
+    respuesta: "No. En esta versión AIda responde únicamente sobre información pública institucional y no requiere que inicies sesión. Las consultas personalizadas por estudiante quedan fuera del alcance actual porque implican datos personales protegidos por la Ley 25.326.",
+  },
+  {
+    pregunta: "¿Qué pasa si AIda no sabe la respuesta?",
+    respuesta: "No inventa una respuesta. Si no tiene evidencia suficiente, deriva la consulta al panel institucional para que la responda una persona de Bedelía o Alumnado. Esa respuesta humana después se incorpora a la base de conocimiento.",
+  },
+  {
+    pregunta: "¿La información está actualizada?",
+    respuesta: "Sí. El personal de Bedelía, Alumnado y Secretaría carga y actualiza la información oficial desde el panel de gestión, con versionado y fecha de vigencia, de modo que cada dato indica desde cuándo rige.",
+  },
+];
+
+function inicializarFaq() {
+  const contenedor = document.getElementById("faqAccordion");
+
+  if (!contenedor) {
+    return;
+  }
+
+  preguntasFrecuentes.forEach((item, indice) => {
+    const idCuerpo = `faqCuerpo${indice}`;
+
+    const bloque = document.createElement("div");
+    bloque.className = "accordion-item";
+
+    const encabezado = document.createElement("h3");
+    encabezado.className = "accordion-header";
+
+    const boton = document.createElement("button");
+    boton.className = "accordion-button collapsed fw-semibold";
+    boton.type = "button";
+    boton.dataset.bsToggle = "collapse";
+    boton.dataset.bsTarget = `#${idCuerpo}`;
+    boton.setAttribute("aria-expanded", "false");
+    boton.setAttribute("aria-controls", idCuerpo);
+    boton.textContent = item.pregunta;
+
+    const cuerpo = document.createElement("div");
+    cuerpo.className = "accordion-collapse collapse";
+    cuerpo.id = idCuerpo;
+    cuerpo.dataset.bsParent = "#faqAccordion";
+
+    const contenido = document.createElement("div");
+    contenido.className = "accordion-body text-body-secondary";
+    contenido.textContent = item.respuesta;
+
+    encabezado.appendChild(boton);
+    cuerpo.appendChild(contenido);
+    bloque.appendChild(encabezado);
+    bloque.appendChild(cuerpo);
+    contenedor.appendChild(bloque);
+  });
+}
+
 function inicializarModoOscuro() {
   const boton = document.getElementById("temaToggle");
   const icono = document.getElementById("temaIcono");
@@ -231,6 +296,7 @@ function inicializarCierreMenuMobile() {
 
 document.addEventListener("DOMContentLoaded", () => {
   inicializarModoOscuro();
+  inicializarFaq();
   inicializarChat();
   inicializarWidgetChat();
   inicializarNavbarActivo();
