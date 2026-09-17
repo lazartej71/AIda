@@ -374,6 +374,19 @@ img {
 }
 ===== FIN ASISTENTE TP2 ===== */
 
+/* Menu hamburguesa: evita que el desplegable se pase de alto en pantallas chicas */
+@media (max-width: 1199.98px) {
+  .navbar-collapse {
+    max-height: 75vh;
+    overflow-y: auto;
+  }
+
+  .navbar-nav .nav-link {
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+  }
+}
+
 /* ===== WIDGET FLOTANTE DEL CHAT ===== */
 .chat-launcher {
   position: fixed;
