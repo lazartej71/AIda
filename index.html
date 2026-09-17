@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-bs-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,11 +28,12 @@
       content="Consultá mesas de examen, inscripciones, correlativas y trámites académicos con AIda, el asistente de la UTN FRT."
     />
     <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#0d0d0d" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&display=swap"
       rel="stylesheet"
     />
 
@@ -44,307 +45,400 @@
     <link rel="stylesheet" href="./css/styles.css" />
 
     <link rel="icon" href="img/favicon.png" type="image/png" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Qué es AIda?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "AIda es el asistente institucional de la UTN Facultad Regional Tucumán. Responde consultas sobre mesas de examen, inscripciones, correlativas y trámites académicos las 24 horas, citando siempre la fuente oficial y su fecha de actualización."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cómo consulto las fechas de las mesas de examen?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Podés preguntárselo directamente al chat virtual. Las fechas exactas se resuelven por consulta a la base de datos institucional, no por generación de texto, así que la respuesta refleja el calendario académico vigente."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿AIda puede ver mi historia académica?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. En esta versión AIda responde únicamente sobre información pública institucional y no requiere que inicies sesión. Las consultas personalizadas por estudiante quedan fuera del alcance actual porque implican datos personales protegidos por la Ley 25.326."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué pasa si AIda no sabe la respuesta?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No inventa una respuesta. Si no tiene evidencia suficiente, deriva la consulta al panel institucional para que la responda una persona de Bedelía o Alumnado. Esa respuesta humana después se incorpora a la base de conocimiento."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿La información está actualizada?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí. El personal de Bedelía, Alumnado y Secretaría carga y actualiza la información oficial desde el panel de gestión, con versionado y fecha de vigencia, de modo que cada dato indica desde cuándo rige."
+            }
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow-sm" style="background-color: var(--color-primary);">
+    <nav class="navbar navbar-expand-lg">
       <div class="container">
-        <a class="navbar-brand d-flex align-items-center gap-2" href="#inicio">
-          <img
-            src="img/logoAIda.png"
-            alt="Logo de la UTN Facultad Regional Tucumán"
-            style="height: 40px; width: auto;"
-          />
-          <span class="fw-bold fs-4">AIda</span>
+        <a class="navbar-brand" href="#inicio">
+          <img src="img/logoAIda.png" alt="Logo de AIda" class="brand-logo" />
+          <span>~/<b>AI</b>da<b class="punto">.utnfrt</b></span>
         </a>
 
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navMenu"
-          aria-controls="navMenu"
-          aria-expanded="false"
-          aria-label="Abrir menú de navegación"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <div class="d-flex align-items-center gap-2 order-lg-3">
+          <button
+            class="tema-switch"
+            type="button"
+            id="temaToggle"
+            role="switch"
+            aria-checked="true"
+            aria-label="Cambiar entre modo claro y oscuro"
+          >
+            <span class="tema-pista" aria-hidden="true">
+              <span class="tema-bola">
+                <svg class="tema-icono tema-icono-sol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                  <circle cx="12" cy="12" r="4.2" fill="currentColor" stroke="none" />
+                  <path d="M12 1.8v2.4M12 19.8v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M1.8 12h2.4M19.8 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7" />
+                </svg>
+                <svg class="tema-icono tema-icono-luna" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M21 12.9A9.1 9.1 0 1 1 11.1 3a7.1 7.1 0 0 0 9.9 9.9z" />
+                </svg>
+              </span>
+            </span>
+          </button>
 
-        <div class="collapse navbar-collapse" id="navMenu">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-lg-3 text-center">
-            <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
-            <li class="nav-item"><a class="nav-link" href="#como-funciona">Cómo funciona</a></li>
-            <li class="nav-item"><a class="nav-link" href="#temas">Temas</a></li>
-            <li class="nav-item"><a class="nav-link" href="#asistente">Asistente</a></li>
-            <li class="nav-item"><a class="nav-link" href="#panel">Panel institucional</a></li>
-            <li class="nav-item"><a class="nav-link" href="#equipo">Equipo</a></li>
+          <button
+            class="navbar-toggler d-lg-none"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navMenu"
+            aria-controls="navMenu"
+            aria-expanded="false"
+            aria-label="Abrir menú de navegación"
+          >
+            <span class="barra"></span><span class="barra"></span><span class="barra"></span>
+          </button>
+        </div>
+
+        <div class="collapse navbar-collapse order-lg-2" id="navMenu">
+          <ul class="navbar-nav ms-auto py-2 py-lg-0">
+            <li class="nav-item"><a class="nav-link" href="#como-funciona"><span class="n">01</span>Cómo funciona</a></li>
+            <li class="nav-item"><a class="nav-link" href="#temas"><span class="n">02</span>Temas</a></li>
+            <li class="nav-item"><a class="nav-link" href="#asistente"><span class="n">03</span>Asistente</a></li>
+            <li class="nav-item"><a class="nav-link" href="#panel"><span class="n">04</span>Panel</a></li>
+            <li class="nav-item"><a class="nav-link" href="#faq"><span class="n">05</span>Preguntas</a></li>
+            <li class="nav-item"><a class="nav-link" href="#equipo"><span class="n">06</span>Equipo</a></li>
           </ul>
         </div>
       </div>
     </nav>
 
-    <main>
-      <section
-        id="inicio"
-        class="d-flex align-items-center text-white"
-        style="
-          min-height: 80vh;
-          background: linear-gradient(135deg, rgba(0, 56, 101, 0.85) 0%, rgba(0, 56, 101, 0.65) 100%),
-            url('img/PortadaAIda.jpg');
-          background-size: cover;
-          background-position: center center;
-        "
-      >
-        <div class="container py-5">
-          <div class="row">
-            <div class="col-lg-7">
-              <h1 class="display-4 fw-bold mb-3">
-                AIda, el asistente institucional de la UTN FRT
-              </h1>
-              <p class="lead mb-4">
-                Sistema de gestión de consultas y conocimiento académico con panel
-                web y asistente conversacional basado en IA para la Facultad
-                Regional Tucumán.
-              </p>
-              <a href="#asistente" class="btn btn-warning btn-lg rounded-pill fw-semibold px-4">
-                Consultar ahora
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="como-funciona" class="py-5 bg-white">
-        <div class="container">
-          <h2 class="text-center fw-bold mb-5" style="color: var(--color-primary);">
-            Cómo funciona
-          </h2>
-
-          <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col">
-              <article
-                class="card h-100 text-center border-0 shadow-sm"
-                style="background-color: var(--color-bg-alt); border-left: 6px solid var(--color-primary-light) !important;"
-              >
-                <div class="card-body p-4">
-                  <div class="fs-1 mb-2">📊</div>
-                  <h3 class="card-title h5 fw-bold" style="color: var(--color-primary);">
-                    Datos exactos
-                  </h3>
-                  <p class="card-text small text-body-secondary">
-                    Fechas de mesas, correlativas y aranceles se resuelven por
-                    consulta directa a la base de datos, no por generación de texto.
-                  </p>
-                </div>
-              </article>
-            </div>
-
-            <div class="col">
-              <article
-                class="card h-100 text-center border-0 shadow-sm"
-                style="background-color: var(--color-bg-alt); border-left: 6px solid var(--color-primary-light) !important;"
-              >
-                <div class="card-body p-4">
-                  <div class="fs-1 mb-2">📄</div>
-                  <h3 class="card-title h5 fw-bold" style="color: var(--color-primary);">
-                    Procedimientos y reglamentos
-                  </h3>
-                  <p class="card-text small text-body-secondary">
-                    Se responden recuperando el documento oficial correspondiente,
-                    citando siempre la fuente y su fecha de actualización.
-                  </p>
-                </div>
-              </article>
-            </div>
-
-            <div class="col">
-              <article
-                class="card h-100 text-center border-0 shadow-sm"
-                style="background-color: var(--color-bg-alt); border-left: 6px solid var(--color-primary-light) !important;"
-              >
-                <div class="card-body p-4">
-                  <div class="fs-1 mb-2">🛑</div>
-                  <h3 class="card-title h5 fw-bold" style="color: var(--color-primary);">
-                    Política de abstención
-                  </h3>
-                  <p class="card-text small text-body-secondary">
-                    Si el asistente no tiene evidencia suficiente, no inventa una
-                    respuesta: deriva la consulta al panel institucional.
-                  </p>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="temas" class="py-5" style="background-color: var(--color-bg-alt);">
-        <div class="container">
-          <h2 class="text-center fw-bold mb-5" style="color: var(--color-primary);">
-            Temas que cubre
-          </h2>
-
-          <ul class="list-unstyled d-flex flex-wrap justify-content-center gap-3 mb-0">
-            <li class="tema-pill bg-white rounded-pill px-4 py-2 shadow-sm border">
-              📅 Mesas de examen
-            </li>
-            <li class="tema-pill bg-white rounded-pill px-4 py-2 shadow-sm border">
-              📝 Inscripciones
-            </li>
-            <li class="tema-pill bg-white rounded-pill px-4 py-2 shadow-sm border">
-              🔗 Correlativas
-            </li>
-            <li class="tema-pill bg-white rounded-pill px-4 py-2 shadow-sm border">
-              📋 Trámites administrativos
-            </li>
-            <li class="tema-pill bg-white rounded-pill px-4 py-2 shadow-sm border">
-              🎓 Ingreso de nuevos estudiantes
-            </li>
-            <li class="tema-pill bg-white rounded-pill px-4 py-2 shadow-sm border">
-              🗓️ Calendario académico
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <section id="asistente" class="py-5 bg-white text-center">
-        <div class="container">
-          <h2 class="fw-bold mb-3" style="color: var(--color-primary);">
-            Asistente conversacional
-          </h2>
-          <p class="text-body-secondary mx-auto mb-5" style="max-width: 600px;">
-            Consultá las 24 horas, los 7 días de la semana. El asistente te
-            responderá con información oficial y te derivará al panel si es
-            necesario.
+    <header class="hero container" id="inicio">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-tag reveal"><span class="dot"></span> UTN · Facultad Regional Tucumán</div>
+          <h1 class="reveal d1">Asistente Institucional <span class="accent">AI</span>da<span class="cursor"></span></h1>
+          <p class="hero-sub reveal d2">
+            Mesas<span class="sep">·</span>Inscripciones<span class="sep">·</span>Correlativas<span class="sep">·</span>Trámites<span class="sep">·</span>Calendario
           </p>
+          <p class="hero-tagline reveal d3">
+            Sistema de gestión de consultas y conocimiento académico con panel web y
+            asistente conversacional basado en IA para la Facultad Regional Tucumán.
+          </p>
+          <div class="hero-meta reveal d4">
+            <span><b>24</b>horas disponible</span>
+            <span><b>06</b>temas cubiertos</span>
+            <span><b>2026</b>trabajo final</span>
+          </div>
+          <button class="btn hero-cta reveal d4" type="button" id="heroCta">
+            Consultar ahora <span aria-hidden="true">›</span>
+          </button>
+        </div>
+
+        <figure class="hero-logo-marco reveal d2 mb-0">
+          <img src="img/logoAIda.png" alt="Logo de AIda, asistente institucional de la UTN FRT" />
+          <figcaption class="hero-logo-pie">Asistente Institucional De Alumnos</figcaption>
+        </figure>
+      </div>
+    </header>
+
+    <main>
+      <section id="como-funciona" class="section-pad">
+      <div class="container">
+        <div class="sec-head reveal">
+          <span class="sec-num">01</span>
+          <div>
+            <span class="sec-kicker">Cómo funciona</span>
+            <h2 class="sec-title">Tres reglas para responder</h2>
+          </div>
+        </div>
+
+        <div class="cards row row-cols-1 row-cols-md-3 g-0 reveal d1">
+          <div class="col"><article class="card">
+            <span class="card-idx">01</span>
+            <span class="card-glyph">▤</span>
+            <span class="card-tag">Consulta · Base de datos</span>
+            <h3>Datos exactos</h3>
+            <p>
+              Fechas de mesas, correlativas y aranceles se resuelven por consulta
+              directa a la base de datos, no por generación de texto.
+            </p>
+          </article></div>
+
+          <div class="col"><article class="card">
+            <span class="card-idx">02</span>
+            <span class="card-glyph">◭</span>
+            <span class="card-tag">Recuperación · Documento</span>
+            <h3>Procedimientos y reglamentos</h3>
+            <p>
+              Se responden recuperando el documento oficial correspondiente,
+              citando siempre la fuente y su fecha de actualización.
+            </p>
+          </article></div>
+
+          <div class="col"><article class="card">
+            <span class="card-idx">03</span>
+            <span class="card-glyph">⇄</span>
+            <span class="card-tag">Abstención · Derivación</span>
+            <h3>Política de abstención</h3>
+            <p>
+              Si el asistente no tiene evidencia suficiente, no inventa una
+              respuesta: deriva la consulta al panel institucional.
+            </p>
+          </article></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="temas" class="section-pad">
+      <div class="container">
+        <div class="sec-head reveal">
+          <span class="sec-num">02</span>
+          <div>
+            <span class="sec-kicker">Temas</span>
+            <h2 class="sec-title">Qué podés consultar</h2>
+          </div>
+        </div>
+
+        <ul class="temas-grid row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-0 list-unstyled reveal d1">
+          <li class="col"><span class="tema"><span class="n">01</span><b>Mesas de examen</b></span></li>
+          <li class="col"><span class="tema"><span class="n">02</span><b>Inscripciones</b></span></li>
+          <li class="col"><span class="tema"><span class="n">03</span><b>Correlativas</b></span></li>
+          <li class="col"><span class="tema"><span class="n">04</span><b>Trámites administrativos</b></span></li>
+          <li class="col"><span class="tema"><span class="n">05</span><b>Ingreso de nuevos estudiantes</b></span></li>
+          <li class="col"><span class="tema"><span class="n">06</span><b>Calendario académico</b></span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="asistente" class="section-pad">
+      <div class="container">
+        <div class="sec-head reveal">
+          <span class="sec-num">03</span>
+          <div>
+            <span class="sec-kicker">Asistente</span>
+            <h2 class="sec-title">Consola conversacional</h2>
+          </div>
+        </div>
+
+        <p class="sec-intro reveal d1">
+          Consultá las 24 horas, los 7 días de la semana. El asistente te
+          responderá con información oficial y te derivará al panel si es
+          necesario.
+        </p>
+
+        <div class="term consola reveal d2" id="consolaSeccion">
+          <div class="term-bar">
+            <span class="d r"></span><span class="d y"></span><span class="d g"></span>
+            <span class="name">aida — consulta institucional</span>
+            <span class="estado">en línea</span>
+          </div>
 
           <div
-            class="card mx-auto border-0 shadow overflow-hidden text-start"
-            style="max-width: 480px;"
-          >
-            <div
-              class="card-header d-flex align-items-center gap-2 text-white border-0 py-3"
-              style="background-color: var(--color-primary);"
-            >
-              <span class="fs-5">💬</span>
-              <span class="fw-bold flex-grow-1">AIda</span>
-              <span class="small opacity-75">● En línea</span>
-            </div>
-            <div class="chat-messages" id="chatMessages">
-              <div class="message received">
-                <div class="bubble">Hola, soy AIda. ¿En qué puedo ayudarte?</div>
-                <span class="time">10:30</span>
-              </div>
-              <div class="message sent">
-                <div class="bubble">¿Cuándo es la próxima mesa de examen de Análisis Matemático?</div>
-                <span class="time">10:31</span>
-              </div>
-              <div class="message received">
-                <div class="bubble">
-                  La próxima mesa de Análisis Matemático es el <strong>15 de noviembre</strong>.
-                  Podés consultar el calendario completo en <a href="#">este enlace</a>.
-                </div>
-                <span class="time">10:31</span>
-              </div>
-            </div>
-            <div class="input-group border-top">
-              <input
-                type="text"
-                class="form-control border-0 shadow-none py-3"
-                placeholder="Escribí tu consulta..."
-                aria-label="Escribí tu consulta"
-                id="chatInput"
-              />
-              <button
-                class="btn text-white px-4"
-                type="button"
-                aria-label="Enviar consulta"
-                style="background-color: var(--color-primary);"
-                id="chatSendBtn"
-              >
-                ➤
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+            class="consola-registro"
+            role="log"
+            aria-live="polite"
+            aria-label="Conversación con AIda"
+          ></div>
 
-      <section id="panel" class="py-5 text-center" style="background-color: var(--color-bg-alt);">
-        <div class="container">
-          <h2 class="fw-bold mb-3" style="color: var(--color-primary);">
-            Panel institucional
-          </h2>
-          <p class="text-body-secondary mx-auto mb-5" style="max-width: 700px;">
-            Herramienta para Bedelía, Alumnado y Secretaría: carga y
-            actualización de información oficial, bandeja de consultas
-            priorizadas derivadas por el asistente, y métricas de uso.
-          </p>
-
-          <div class="row justify-content-center g-4">
-            <div class="col-10 col-sm-6 col-lg-3">
-              <div class="card h-100 border-0 shadow-sm align-items-center p-4">
-                <span class="fs-1">📥</span>
-                <span class="fw-semibold mt-2" style="color: var(--color-primary);">
-                  Carga de datos
-                </span>
-              </div>
-            </div>
-
-            <div class="col-10 col-sm-6 col-lg-3">
-              <div class="card h-100 border-0 shadow-sm align-items-center p-4">
-                <span class="fs-1">📩</span>
-                <span class="fw-semibold mt-2" style="color: var(--color-primary);">
-                  Bandeja de consultas
-                </span>
-              </div>
-            </div>
-
-            <div class="col-10 col-sm-6 col-lg-3">
-              <div class="card h-100 border-0 shadow-sm align-items-center p-4">
-                <span class="fs-1">📈</span>
-                <span class="fw-semibold mt-2" style="color: var(--color-primary);">
-                  Métricas y reportes
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer id="equipo" class="text-white py-4" style="background-color: var(--color-primary-dark);">
-      <div class="container">
-        <div
-          class="d-flex flex-column flex-md-row justify-content-between align-items-center text-center text-md-start gap-3"
-        >
-          <div>
-            <p class="fw-semibold fs-6 mb-1">
-              Universidad Tecnológica Nacional – Facultad Regional Tucumán
-            </p>
-            <p class="fw-light opacity-75 mb-1">
-              Tecnicatura Universitaria en Programación – Trabajo Final
-            </p>
-            <p class="fw-light opacity-75 small mb-2">
-              Lazarte, Jorge Exequiel · Díaz, Juan Gabriel
-            </p>
-
-            <div class="d-flex gap-3 justify-content-center justify-content-md-start">
-              <a href="#" class="footer-social-link fs-4 text-white" aria-label="Instagram">📷</a>
-              <a href="#" class="footer-social-link fs-4 text-white" aria-label="Twitter">🐦</a>
-              <a href="#" class="footer-social-link fs-4 text-white" aria-label="LinkedIn">🔗</a>
-            </div>
+          <div class="consola-chips">
+            <button class="chip" type="button">¿Cuándo son las mesas?</button>
+            <button class="chip" type="button">Inscripciones</button>
+            <button class="chip" type="button">Correlativas</button>
+            <button class="chip" type="button">Trámites</button>
           </div>
 
-          <div>
-            <img
-              src="img/logoAIda.png"
-              alt="Logo de AIda, asistente institucional de la UTN FRT"
-              class="opacity-75"
-              style="height: 60px; width: auto;"
+          <div class="consola-entrada">
+            <span class="prompt" aria-hidden="true">$</span>
+            <input
+              type="text"
+              placeholder="Escribí tu consulta"
+              aria-label="Escribí tu consulta"
+              autocomplete="off"
             />
+            <button type="button">Enviar</button>
           </div>
         </div>
       </div>
+    </section>
+
+    <section id="panel" class="section-pad">
+      <div class="container">
+        <div class="sec-head reveal">
+          <span class="sec-num">04</span>
+          <div>
+            <span class="sec-kicker">Panel</span>
+            <h2 class="sec-title">Gestión institucional</h2>
+          </div>
+        </div>
+
+        <p class="sec-intro reveal d1">
+          Herramienta para Bedelía, Alumnado y Secretaría: carga y actualización
+          de información oficial, bandeja de consultas priorizadas derivadas por
+          el asistente, y métricas de uso.
+        </p>
+
+        <div class="cards row row-cols-1 row-cols-md-3 g-0 reveal d2">
+          <div class="col"><article class="card">
+            <span class="card-idx">01</span>
+            <span class="card-glyph">⬢</span>
+            <span class="card-tag">Versionado · Vigencia</span>
+            <h3>Carga de datos</h3>
+            <p>
+              Alta y actualización de la información oficial, registrando qué dato
+              rige y desde cuándo.
+            </p>
+          </article></div>
+
+          <div class="col"><article class="card">
+            <span class="card-idx">02</span>
+            <span class="card-glyph">⟶</span>
+            <span class="card-tag">Bandeja · Prioridad</span>
+            <h3>Consultas derivadas</h3>
+            <p>
+              Todo lo que el asistente no puede responder con certeza se deriva a
+              una persona, ordenado por urgencia y frecuencia.
+            </p>
+          </article></div>
+
+          <div class="col"><article class="card">
+            <span class="card-idx">03</span>
+            <span class="card-glyph">▦</span>
+            <span class="card-tag">Métricas · Cobertura</span>
+            <h3>Reportes de uso</h3>
+            <p>
+              Preguntas más frecuentes, temas sin cobertura, tiempos de respuesta
+              y costo por consulta.
+            </p>
+          </article></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section-pad">
+      <div class="container">
+        <div class="sec-head reveal">
+          <span class="sec-num">05</span>
+          <div>
+            <span class="sec-kicker">Preguntas</span>
+            <h2 class="sec-title">Dudas frecuentes</h2>
+          </div>
+        </div>
+
+        <div class="accordion faq reveal d1" id="faqAccordion"></div>
+      </div>
+    </section>
+
+    </main>
+
+    <footer id="equipo">
+      <div class="container">
+        <div class="foot-grid row g-4">
+          <div class="col-12 col-md-5 reveal">
+            <div class="foot-brand">Asistente Institucional <span class="accent">AI</span>da</div>
+            <img src="img/logoAIda.png" alt="Logo de AIda, asistente institucional de la UTN FRT" class="foot-logo" />
+          </div>
+
+          <div class="col-12 col-sm-6 col-md reveal d1 foot-col">
+            <h4>Institución</h4>
+            <p>Universidad Tecnológica Nacional</p>
+            <p>Facultad Regional Tucumán</p>
+            <p>Tecnicatura Universitaria en Programación</p>
+          </div>
+
+          <div class="col-12 col-sm-6 col-md reveal d2 foot-col">
+            <h4>Equipo</h4>
+            <p>Lazarte, <b>Jorge Exequiel</b></p>
+            <p>Díaz, <b>Juan Gabriel</b></p>
+            <p>Año: <b>2026</b></p>
+          </div>
+        </div>
+
+        <div class="foot-bottom">
+          <span><span class="accent">$</span> echo "asistente institucional" — 2026</span>
+          <span>Trabajo Final — Tecnicatura Universitaria en Programación</span>
+        </div>
+      </div>
     </footer>
+
+    <button
+      class="chat-launcher"
+      type="button"
+      id="chatLauncher"
+      aria-expanded="false"
+      aria-controls="chatFlotante"
+    >
+      <img src="img/logoAIda.png" alt="" class="chat-launcher-logo" />
+      <span class="chat-launcher-texto">Consultar a AIda</span>
+    </button>
+
+    <div
+      class="term chat-flotante"
+      id="chatFlotante"
+      role="dialog"
+      aria-modal="false"
+      aria-label="Chat con AIda"
+      hidden
+    >
+      <div class="term-bar">
+        <span class="d r"></span><span class="d y"></span><span class="d g"></span>
+        <span class="name">aida — chat</span>
+        <button class="widget-cerrar" type="button" aria-label="Cerrar el chat">✕</button>
+      </div>
+
+      <div class="consola-registro" role="log" aria-live="polite" aria-label="Conversación con AIda"></div>
+
+      <div class="consola-chips">
+        <button class="chip" type="button">¿Cuándo son las mesas?</button>
+        <button class="chip" type="button">Inscripciones</button>
+        <button class="chip" type="button">Correlativas</button>
+        <button class="chip" type="button">Trámites</button>
+      </div>
+
+      <div class="consola-entrada">
+        <span class="prompt" aria-hidden="true">$</span>
+        <input type="text" placeholder="Escribí tu consulta" aria-label="Escribí tu consulta" autocomplete="off" />
+        <button type="button">Enviar</button>
+      </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
