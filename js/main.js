@@ -16,20 +16,23 @@ function inicializarChat() {
   }
 
   const respuestas = [
-    { palabras: ["mesa", "examen"], texto: "Las mesas de examen se publican en el calendario académico. Podés consultar fechas exactas en el Panel institucional." },
-    { palabras: ["inscripcion"], texto: "Las inscripciones se gestionan a través del sistema SIU Guaraní. Verificá las fechas vigentes en Bedelía." },
-    { palabras: ["correlativa"], texto: "Las correlativas dependen del plan de estudios de tu carrera. Te recomiendo consultar el reglamento académico oficial." },
-    { palabras: ["tramite", "certificado"], texto: "Los trámites administrativos se realizan en Alumnado. Si necesitás un certificado, podés solicitarlo desde el Panel institucional." },
+    { palabras: ["mesa", "examen"], texto: "Las mesas de examen se publican en el calendario académico. Podés consultar fechas exactas en el Panel institucional.", fuente: "Calendario académico" },
+    { palabras: ["inscripcion"], texto: "Las inscripciones se gestionan a través del sistema SIU Guaraní. Verificá las fechas vigentes en Bedelía.", fuente: "SIU Guaraní" },
+    { palabras: ["correlativa"], texto: "Las correlativas dependen del plan de estudios de tu carrera. Te recomiendo consultar el reglamento académico oficial.", fuente: "Reglamento académico" },
+    { palabras: ["tramite", "certificado"], texto: "Los trámites administrativos se realizan en Alumnado. Si necesitás un certificado, podés solicitarlo desde el Panel institucional.", fuente: "Alumnado" },
   ];
 
-  const respuestaPorDefecto = "No tengo evidencia suficiente para responder con certeza esa consulta. Te recomiendo derivarla al Panel institucional.";
+  const respuestaPorDefecto = {
+    texto: "No tengo evidencia suficiente para responder con certeza esa consulta. Te recomiendo derivarla al Panel institucional.",
+    fuente: "",
+  };
 
   function obtenerRespuesta(consulta) {
     const consultaNormalizada = normalizarTexto(consulta);
     const coincidencia = respuestas.find((item) =>
       item.palabras.some((palabra) => consultaNormalizada.includes(palabra))
     );
-    return coincidencia ? coincidencia.texto : respuestaPorDefecto;
+    return coincidencia || respuestaPorDefecto;
   }
 
   function obtenerHoraActual() {
@@ -39,20 +42,36 @@ function inicializarChat() {
     return `${horas}:${minutos}`;
   }
 
-  function agregarMensaje(texto, tipo) {
+  function agregarMensaje(texto, tipo, fuente) {
     const mensaje = document.createElement("div");
-    mensaje.classList.add("message", tipo);
+    mensaje.classList.add("bd-msg", tipo);
 
-    const burbuja = document.createElement("div");
-    burbuja.classList.add("bubble");
-    burbuja.textContent = texto;
+    const meta = document.createElement("div");
+    meta.className = "bd-msg-meta";
+
+    const canal = document.createElement("span");
+    canal.className = "bd-msg-canal";
+    canal.textContent = tipo === "bd-msg-consulta" ? "vos" : "aida";
 
     const hora = document.createElement("span");
-    hora.classList.add("time");
     hora.textContent = obtenerHoraActual();
 
-    mensaje.appendChild(burbuja);
-    mensaje.appendChild(hora);
+    meta.appendChild(canal);
+    meta.appendChild(hora);
+
+    const cuerpo = document.createElement("div");
+    cuerpo.className = "bd-msg-cuerpo";
+    cuerpo.textContent = texto;
+
+    if (fuente) {
+      const cita = document.createElement("span");
+      cita.className = "bd-msg-fuente";
+      cita.textContent = `Fuente: ${fuente} · actualización: pendiente de carga`;
+      cuerpo.appendChild(cita);
+    }
+
+    mensaje.appendChild(meta);
+    mensaje.appendChild(cuerpo);
     chatMessages.appendChild(mensaje);
 
     chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -65,14 +84,26 @@ function inicializarChat() {
       return;
     }
 
-    agregarMensaje(consulta, "sent");
+    agregarMensaje(consulta, "bd-msg-consulta");
     chatInput.value = "";
 
+    const redactando = document.createElement("p");
+    redactando.className = "bd-consola-redactando";
+    redactando.textContent = "redactando";
+    chatMessages.appendChild(redactando);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
     setTimeout(() => {
+      redactando.remove();
       const respuesta = obtenerRespuesta(consulta);
-      agregarMensaje(respuesta, "received");
+      agregarMensaje(respuesta.texto, "bd-msg-respuesta", respuesta.fuente);
     }, 700);
   }
+
+  agregarMensaje(
+    "Hola, soy AIda. Puedo ayudarte con mesas de examen, inscripciones, correlativas y trámites. ¿Qué necesitás?",
+    "bd-msg-respuesta"
+  );
 
   chatSendBtn.addEventListener("click", manejarEnvio);
 
@@ -82,7 +113,7 @@ function inicializarChat() {
     }
   });
 
-  document.querySelectorAll("#chatSugerencias .chat-chip").forEach((chip) => {
+  document.querySelectorAll("#chatSugerencias .bd-consola-chip").forEach((chip) => {
     chip.addEventListener("click", () => {
       chatInput.value = chip.textContent.trim();
       manejarEnvio();
