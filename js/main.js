@@ -83,6 +83,62 @@ function inicializarChat() {
       manejarEnvio();
     }
   });
+
+  document.querySelectorAll("#chatSugerencias .chat-chip").forEach((chip) => {
+    chip.addEventListener("click", () => {
+      chatInput.value = chip.textContent.trim();
+      manejarEnvio();
+    });
+  });
+}
+
+function inicializarWidgetChat() {
+  const launcher = document.getElementById("chatLauncher");
+  const widget = document.getElementById("chatWidget");
+  const botonCerrar = document.getElementById("chatCerrar");
+  const botonSeccion = document.getElementById("chatAbrirSeccion");
+  const chatInput = document.getElementById("chatInput");
+
+  if (!launcher || !widget) {
+    return;
+  }
+
+  function abrir() {
+    widget.hidden = false;
+    launcher.setAttribute("aria-expanded", "true");
+
+    if (chatInput) {
+      chatInput.focus();
+    }
+  }
+
+  function cerrar() {
+    widget.hidden = true;
+    launcher.setAttribute("aria-expanded", "false");
+    launcher.focus();
+  }
+
+  launcher.addEventListener("click", () => {
+    if (widget.hidden) {
+      abrir();
+    } else {
+      cerrar();
+    }
+  });
+
+  if (botonCerrar) {
+    botonCerrar.addEventListener("click", cerrar);
+  }
+
+  if (botonSeccion) {
+    botonSeccion.addEventListener("click", abrir);
+  }
+
+  document.addEventListener("keydown", (evento) => {
+    if (evento.key === "Escape" && !widget.hidden) {
+      cerrar();
+    }
+  });
 }
 
 
@@ -142,6 +198,7 @@ function inicializarCierreMenuMobile() {
 
 document.addEventListener("DOMContentLoaded", () => {
   inicializarChat();
+  inicializarWidgetChat();
   inicializarNavbarActivo();
   inicializarCierreMenuMobile();
 });

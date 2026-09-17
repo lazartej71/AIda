@@ -217,60 +217,18 @@
             necesario.
           </p>
 
-          <div
-            class="card mx-auto border-0 shadow overflow-hidden text-start"
-            style="max-width: 480px;"
+          <button
+            class="btn btn-lg rounded-pill fw-semibold px-4 text-white"
+            type="button"
+            id="chatAbrirSeccion"
+            style="background-color: var(--color-primary);"
           >
-            <div
-              class="card-header d-flex align-items-center gap-2 text-white border-0 py-3"
-              style="background-color: var(--color-primary);"
-            >
-              <span class="fs-5">💬</span>
-              <span class="fw-bold flex-grow-1">AIda</span>
-              <span class="small opacity-75">● En línea</span>
-            </div>
-            <div
-              class="chat-messages"
-              id="chatMessages"
-              role="log"
-              aria-live="polite"
-              aria-label="Conversación con AIda"
-            >
-              <div class="message received">
-                <div class="bubble">Hola, soy AIda. ¿En qué puedo ayudarte?</div>
-                <span class="time">10:30</span>
-              </div>
-              <div class="message sent">
-                <div class="bubble">¿Cuándo es la próxima mesa de examen de Análisis Matemático?</div>
-                <span class="time">10:31</span>
-              </div>
-              <div class="message received">
-                <div class="bubble">
-                  La próxima mesa de Análisis Matemático es el <strong>15 de noviembre</strong>.
-                  Podés consultar el calendario completo en <a href="#">este enlace</a>.
-                </div>
-                <span class="time">10:31</span>
-              </div>
-            </div>
-            <div class="input-group border-top">
-              <input
-                type="text"
-                class="form-control border-0 shadow-none py-3"
-                placeholder="Escribí tu consulta..."
-                aria-label="Escribí tu consulta"
-                id="chatInput"
-              />
-              <button
-                class="btn text-white px-4"
-                type="button"
-                aria-label="Enviar consulta"
-                style="background-color: var(--color-primary);"
-                id="chatSendBtn"
-              >
-                ➤
-              </button>
-            </div>
-          </div>
+            💬 Abrir el chat virtual
+          </button>
+
+          <p class="small text-body-secondary mt-3 mb-0">
+            También podés abrirlo desde el botón flotante, abajo a la derecha.
+          </p>
         </div>
       </section>
 
@@ -351,6 +309,83 @@
         </div>
       </div>
     </footer>
+
+    <!-- Widget flotante del asistente -->
+    <button
+      class="chat-launcher"
+      type="button"
+      id="chatLauncher"
+      aria-expanded="false"
+      aria-controls="chatWidget"
+    >
+      <img src="img/logoAIda.png" alt="" class="chat-launcher-logo" />
+      <span class="chat-launcher-texto">Chat virtual</span>
+    </button>
+
+    <div
+      class="chat-widget"
+      id="chatWidget"
+      role="dialog"
+      aria-modal="false"
+      aria-labelledby="chatWidgetTitulo"
+      hidden
+    >
+      <div class="chat-widget-header">
+        <img src="img/logoAIda.png" alt="" class="chat-widget-logo" />
+        <div class="flex-grow-1">
+          <p class="fw-bold mb-0" id="chatWidgetTitulo">AIda</p>
+          <p class="small opacity-75 mb-0">● En línea</p>
+        </div>
+        <button
+          class="btn-close btn-close-white"
+          type="button"
+          id="chatCerrar"
+          aria-label="Cerrar el chat"
+        ></button>
+      </div>
+
+      <div
+        class="chat-messages"
+        id="chatMessages"
+        role="log"
+        aria-live="polite"
+        aria-label="Conversación con AIda"
+      >
+        <div class="message received">
+          <div class="bubble">
+            Hola, soy AIda. Puedo ayudarte con mesas de examen, inscripciones,
+            correlativas y trámites. ¿Qué necesitás?
+          </div>
+          <span class="time">10:30</span>
+        </div>
+      </div>
+
+      <div class="chat-sugerencias" id="chatSugerencias">
+        <button class="chat-chip" type="button">¿Cuándo son las mesas?</button>
+        <button class="chat-chip" type="button">Inscripciones</button>
+        <button class="chat-chip" type="button">Correlativas</button>
+        <button class="chat-chip" type="button">Trámites</button>
+      </div>
+
+      <div class="input-group border-top">
+        <input
+          type="text"
+          class="form-control border-0 shadow-none py-3"
+          placeholder="Escribí tu consulta..."
+          aria-label="Escribí tu consulta"
+          id="chatInput"
+        />
+        <button
+          class="btn text-white px-4"
+          type="button"
+          aria-label="Enviar consulta"
+          style="background-color: var(--color-primary);"
+          id="chatSendBtn"
+        >
+          ➤
+        </button>
+      </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
