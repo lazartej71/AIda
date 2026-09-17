@@ -90,9 +90,13 @@ function inicializarNavbarActivo() {
           const idVisible = entrada.target.getAttribute("id");
 
           navLinks.forEach((link) => {
-            link.classList.remove("active");
-            if (link.getAttribute("href") === `#${idVisible}`) {
-              link.classList.add("active");
+            const esActivo = link.getAttribute("href") === `#${idVisible}`;
+            link.classList.toggle("active", esActivo);
+
+            if (esActivo) {
+              link.setAttribute("aria-current", "true");
+            } else {
+              link.removeAttribute("aria-current");
             }
           });
         }
