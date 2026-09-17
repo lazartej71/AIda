@@ -206,17 +206,13 @@ function inicializarFaq() {
 
 function inicializarModoOscuro() {
   const boton = document.getElementById("temaToggle");
-  const icono = document.getElementById("temaIcono");
-  const texto = document.getElementById("temaTexto");
   const CLAVE = "aida-tema";
 
   function aplicarTema(tema) {
     document.documentElement.setAttribute("data-bs-theme", tema);
 
-    if (icono && texto) {
-      const esOscuro = tema === "dark";
-      icono.textContent = esOscuro ? "☀️" : "🌙";
-      texto.textContent = esOscuro ? "Modo claro" : "Modo oscuro";
+    if (boton) {
+      boton.setAttribute("aria-checked", String(tema === "dark"));
     }
   }
 
