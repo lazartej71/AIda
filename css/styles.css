@@ -1,38 +1,65 @@
 :root {
-  --color-primary: #003865;
-  --color-primary-light: #0059a3;
-  --color-primary-dark: #002244;
-  --color-accent: #f5a623;     /* Naranja para acentos */
-  --color-bg: #ffffff;
-  --color-bg-alt: #f4f6f8;
-  --color-text: #1a1a1a;
-  --color-text-light: #555555;
-  --color-white: #ffffff;
-  --font-base: 'Inter', 'Segoe UI', Arial, Helvetica, sans-serif;
-  --spacing-sm: 0.5rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 2rem;
-  --spacing-xl: 4rem;
-  --border-radius: 12px;
-  --box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  --transition: all 0.25s ease;
-  --color-heading: var(--color-primary);
-  --color-surface: #ffffff;
-  --color-chat-bg: #f9fafc;
-  --color-borde-suave: rgba(0, 56, 101, 0.12);
+  --ink: #0f1e1c;
+  --ink-2: #3f5451;
+  --muted: #7b8d8a;
+  --surface: #fbfdfc;
+  --canvas: #eef3f2;
+  --line: rgba(15, 30, 28, 0.14);
+  --line-soft: rgba(15, 30, 28, 0.07);
+
+  --acc: #0b7a6e;
+  --acc-deep: #063f3a;
+  --acc-weak: rgba(11, 122, 110, 0.09);
+  --acc-glow: #2dd4bf;
+
+  --ok: #2e7d32;
+  --warn: #9a6200;
+  --danger: #b23a30;
+
+  --consola-bg: #0b1a18;
+  --consola-text: #e6f2f0;
+
+  --radius: 6px;
+  --radius-sm: 4px;
+  --shadow-float: 0 8px 24px -8px rgba(32, 29, 29, 0.18);
+
+  --font-sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  /* Variables nativas de Bootstrap: se redefinen en lugar de pelear con !important */
+  --bs-body-bg: var(--canvas);
+  --bs-body-color: var(--ink);
+  --bs-secondary-color: var(--ink-2);
+  --bs-border-color: var(--line);
+  --bs-border-radius: var(--radius);
+  --bs-border-radius-sm: var(--radius-sm);
+  --bs-border-radius-lg: var(--radius);
+  --bs-font-sans-serif: var(--font-sans);
+  --bs-font-monospace: var(--font-mono);
+  --bs-primary: var(--ink);
+  --bs-link-color: var(--acc);
+  --bs-link-hover-color: var(--acc-deep);
+  --bs-emphasis-color: var(--ink);
 }
 
-/* Modo oscuro: redefine las variables para que los estilos inline se adapten solos */
+/* Modo oscuro (§7): mantiene la dominante verde-azulada, no es un gris invertido */
 [data-bs-theme="dark"] {
-  --color-bg: #121821;
-  --color-bg-alt: #1b2430;
-  --color-text: #e6e9ee;
-  --color-text-light: #a8b0bd;
-  --color-heading: #6db3ff;
-  --color-surface: #1b2430;
-  --color-chat-bg: #161e28;
-  --color-borde-suave: rgba(255, 255, 255, 0.16);
-  --box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --ink: #e6f2f0;
+  --ink-2: #a8c0bc;
+  --muted: #7e9793;
+  --surface: #122724;
+  --canvas: #0b1a18;
+  --line: rgba(230, 242, 240, 0.16);
+  --line-soft: rgba(230, 242, 240, 0.08);
+
+  --acc: #2dd4bf;
+  --acc-deep: #7ce9da;
+  --acc-weak: rgba(45, 212, 191, 0.13);
+
+  --shadow-float: 0 8px 24px -8px rgba(0, 0, 0, 0.6);
+
+  --bs-primary: var(--acc);
+  --bs-emphasis-color: var(--ink);
 }
 
 * {
@@ -45,23 +72,17 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Compensa el alto del navbar sticky para que los titulos no queden tapados al navegar */
 section[id],
 footer[id] {
-  scroll-margin-top: 80px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+  scroll-margin-top: 72px;
 }
 
 body {
-  font-family: var(--font-base);
-  color: var(--color-text);
-  background-color: var(--color-bg);
-  line-height: 1.6;
+  font-family: var(--font-sans);
+  color: var(--ink);
+  background-color: var(--canvas);
+  font-size: 15px;
+  line-height: 1.55;
 }
 
 img {
@@ -69,6 +90,618 @@ img {
   height: auto;
   display: block;
 }
+
+h1 {
+  font-size: 24px;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 19px;
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 15px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+p {
+  max-width: 62ch;
+}
+
+/* Mono solo donde aporta informacion: identificadores, fechas y datos (§3) */
+.bd-mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+a {
+  color: var(--acc);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--acc-deep);
+  text-decoration: underline;
+}
+
+:where(a, button, input, [tabindex]):focus-visible {
+  outline: 1px solid var(--acc);
+  box-shadow: 0 0 0 3px var(--acc-weak);
+  outline-offset: 1px;
+}
+
+/* ===== SUPERFICIES ===== */
+.bd-superficie {
+  background-color: var(--surface);
+}
+
+.bd-seccion {
+  padding: 48px 0;
+  border-top: 1px solid var(--line);
+}
+
+.bd-seccion-titulo {
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.bd-seccion-bajada {
+  color: var(--ink-2);
+  margin-bottom: 32px;
+}
+
+/* ===== NAVBAR ===== */
+.bd-navbar {
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--line);
+  min-height: 56px;
+}
+
+.bd-navbar .navbar-brand {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--ink);
+  font-size: 15px;
+}
+
+.bd-navbar .nav-link {
+  color: var(--ink-2);
+  font-size: 14px;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+}
+
+.bd-navbar .nav-link:hover {
+  color: var(--ink);
+  background-color: var(--acc-weak);
+}
+
+.bd-navbar .nav-link.active {
+  color: var(--ink);
+  font-weight: 600;
+  background-color: var(--acc-weak);
+  box-shadow: inset 2px 0 0 var(--ink);
+}
+
+.bd-navbar .navbar-toggler {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 4px 8px;
+}
+
+.bd-navbar .navbar-toggler-icon {
+  background-image: none;
+  position: relative;
+  width: 18px;
+  height: 14px;
+}
+
+.bd-navbar .navbar-toggler-icon,
+.bd-navbar .navbar-toggler-icon::before,
+.bd-navbar .navbar-toggler-icon::after {
+  border-top: 1.5px solid var(--ink);
+}
+
+.bd-navbar .navbar-toggler-icon::before,
+.bd-navbar .navbar-toggler-icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.bd-navbar .navbar-toggler-icon::before {
+  top: 5px;
+}
+
+.bd-navbar .navbar-toggler-icon::after {
+  top: 11px;
+}
+
+@media (max-width: 1199.98px) {
+  .navbar-collapse {
+    max-height: 75vh;
+    overflow-y: auto;
+    border-top: 1px solid var(--line-soft);
+    margin-top: 8px;
+    padding-top: 8px;
+  }
+}
+
+/* ===== PORTADA ===== */
+.bd-portada {
+  position: relative;
+  background-color: var(--canvas);
+  border-bottom: 1px solid var(--line);
+  padding: 64px 0;
+}
+
+.bd-portada-titulo {
+  font-size: 32px;
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 16px;
+}
+
+.bd-portada-bajada {
+  color: var(--ink-2);
+  margin-bottom: 24px;
+}
+
+.bd-portada-figura {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+/* ===== BOTONES (§5): el primario es --ink, el acento queda libre para señalar ===== */
+.bd-btn {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.bd-btn-primario {
+  background-color: var(--ink);
+  color: var(--surface);
+}
+
+.bd-btn-primario:hover {
+  background-color: #1b312e;
+  color: var(--surface);
+  text-decoration: none;
+}
+
+[data-bs-theme="dark"] .bd-btn-primario {
+  background-color: var(--acc);
+  color: var(--canvas);
+}
+
+[data-bs-theme="dark"] .bd-btn-primario:hover {
+  background-color: var(--acc-deep);
+  color: var(--canvas);
+}
+
+/* ===== CARDS (§4): estructura con borde de 1px, sin sombra ===== */
+.bd-card {
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px;
+  height: 100%;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.bd-card:hover {
+  border-color: rgba(15, 30, 28, 0.28);
+}
+
+[data-bs-theme="dark"] .bd-card:hover {
+  border-color: rgba(230, 242, 240, 0.3);
+}
+
+.bd-card-titulo {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.bd-card-texto {
+  color: var(--ink-2);
+  font-size: 14px;
+  margin: 0;
+}
+
+.bd-card-indice {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--acc);
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* ===== CHIPS DE IDENTIFICADOR (§5) ===== */
+.bd-tema {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 14px;
+  color: var(--ink);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.bd-tema:hover {
+  background-color: var(--acc-weak);
+  border-color: var(--acc);
+}
+
+/* ===== ACORDEON DE PREGUNTAS ===== */
+.accordion {
+  --bs-accordion-bg: var(--surface);
+  --bs-accordion-color: var(--ink);
+  --bs-accordion-border-color: var(--line);
+  --bs-accordion-border-radius: var(--radius);
+  --bs-accordion-btn-color: var(--ink);
+  --bs-accordion-btn-bg: var(--surface);
+  --bs-accordion-active-bg: var(--acc-weak);
+  --bs-accordion-active-color: var(--ink);
+  --bs-accordion-btn-focus-box-shadow: 0 0 0 3px var(--acc-weak);
+}
+
+.accordion-button {
+  font-size: 15px;
+}
+
+.accordion-body {
+  color: var(--ink-2);
+  font-size: 14px;
+}
+
+/* ===== SWITCH DE TEMA ===== */
+.bd-tema-switch {
+  border: 1px solid var(--line);
+  background-color: var(--canvas);
+  border-radius: var(--radius-sm);
+  padding: 2px;
+  line-height: 0;
+  cursor: pointer;
+}
+
+.bd-tema-switch-pista {
+  position: relative;
+  display: block;
+  width: 52px;
+  height: 24px;
+}
+
+.bd-tema-switch-bola {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 24px;
+  border-radius: 3px;
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  transition: transform 0.22s ease;
+}
+
+[data-bs-theme="dark"] .bd-tema-switch-bola {
+  transform: translateX(26px);
+}
+
+.bd-tema-icono {
+  grid-area: 1 / 1;
+  width: 13px;
+  height: 13px;
+  color: var(--ink-2);
+  transition: opacity 0.18s ease;
+}
+
+.bd-tema-icono-luna {
+  opacity: 0;
+}
+
+[data-bs-theme="dark"] .bd-tema-icono-sol {
+  opacity: 0;
+}
+
+[data-bs-theme="dark"] .bd-tema-icono-luna {
+  opacity: 1;
+}
+
+/* ===== CONSOLA DEL ASISTENTE (§6) ===== */
+.bd-consola-launcher {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1045;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px 8px 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background-color: var(--consola-bg);
+  color: var(--consola-text);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  box-shadow: var(--shadow-float);
+}
+
+.bd-consola-launcher:hover {
+  border-color: var(--acc-glow);
+}
+
+.bd-consola-launcher-logo {
+  height: 24px;
+  width: 24px;
+  border-radius: 3px;
+  background-color: var(--consola-text);
+  padding: 2px;
+}
+
+.bd-consola {
+  position: fixed;
+  right: 20px;
+  bottom: 72px;
+  z-index: 1046;
+  width: min(420px, calc(100vw - 40px));
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(230, 242, 240, 0.14);
+  border-radius: var(--radius);
+  background-color: var(--consola-bg);
+  color: var(--consola-text);
+  box-shadow: var(--shadow-float);
+}
+
+.bd-consola[hidden] {
+  display: none;
+}
+
+.bd-consola-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(230, 242, 240, 0.12);
+}
+
+.bd-consola-titulo {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.bd-consola-estado {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--acc-glow);
+}
+
+.bd-consola-cerrar {
+  background: none;
+  border: none;
+  color: var(--consola-text);
+  opacity: 0.6;
+  font-size: 16px;
+  line-height: 1;
+  padding: 4px;
+}
+
+.bd-consola-cerrar:hover {
+  opacity: 1;
+}
+
+.bd-consola-registro {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 12px;
+  min-height: 200px;
+  max-height: 320px;
+  overflow-y: auto;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.bd-msg-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: rgba(230, 242, 240, 0.5);
+  margin-bottom: 4px;
+}
+
+.bd-msg-canal {
+  border: 1px solid rgba(230, 242, 240, 0.2);
+  border-radius: 3px;
+  padding: 1px 5px;
+}
+
+.bd-msg-consulta .bd-msg-cuerpo {
+  color: rgba(230, 242, 240, 0.78);
+  padding-left: 10px;
+  border-left: 2px solid rgba(230, 242, 240, 0.18);
+}
+
+/* El glow vive en tres lugares y en ninguno mas (§6) */
+.bd-msg-respuesta .bd-msg-cuerpo {
+  padding-left: 10px;
+  border-left: 2px solid var(--acc-glow);
+}
+
+.bd-msg-fuente {
+  display: block;
+  margin-top: 8px;
+  font-size: 11px;
+  color: rgba(230, 242, 240, 0.5);
+}
+
+.bd-consola-redactando {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--acc-glow);
+}
+
+.bd-consola-redactando::after {
+  content: "";
+  width: 6px;
+  height: 12px;
+  background-color: var(--acc-glow);
+  animation: bd-parpadeo 1s steps(2, start) infinite;
+}
+
+@keyframes bd-parpadeo {
+  to {
+    visibility: hidden;
+  }
+}
+
+.bd-consola-sugerencias {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px 12px;
+  border-top: 1px solid rgba(230, 242, 240, 0.12);
+}
+
+.bd-consola-chip {
+  background: none;
+  border: 1px solid rgba(230, 242, 240, 0.22);
+  border-radius: 3px;
+  color: rgba(230, 242, 240, 0.8);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 3px 8px;
+}
+
+.bd-consola-chip:hover {
+  border-color: var(--acc-glow);
+  color: var(--consola-text);
+}
+
+.bd-consola-entrada {
+  display: flex;
+  border-top: 1px solid rgba(230, 242, 240, 0.12);
+  background-color: #10221f;
+}
+
+.bd-consola-entrada input {
+  flex: 1;
+  background: none;
+  border: none;
+  color: var(--consola-text);
+  caret-color: var(--acc-glow);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  padding: 10px 12px;
+}
+
+.bd-consola-entrada input::placeholder {
+  color: rgba(230, 242, 240, 0.35);
+}
+
+.bd-consola-entrada input:focus {
+  outline: none;
+}
+
+.bd-consola-entrada button {
+  background: none;
+  border: none;
+  border-left: 1px solid rgba(230, 242, 240, 0.12);
+  color: var(--consola-text);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  padding: 0 14px;
+}
+
+.bd-consola-entrada button:hover {
+  color: var(--acc-glow);
+}
+
+@media (max-width: 575.98px) {
+  .bd-consola {
+    right: 8px;
+    left: 8px;
+    bottom: 8px;
+    width: auto;
+    height: min(85vh, 560px);
+  }
+
+  .bd-consola-registro {
+    max-height: none;
+  }
+
+  .bd-consola-launcher-texto {
+    display: none;
+  }
+}
+
+/* ===== PIE ===== */
+.bd-pie {
+  background-color: var(--surface);
+  border-top: 1px solid var(--line);
+  padding: 32px 0;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.bd-pie-enlace {
+  color: var(--ink-2);
+  font-size: 18px;
+}
+
+.bd-pie-enlace:hover {
+  color: var(--acc);
+  text-decoration: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .bd-tema-switch-bola,
+  .bd-tema-icono,
+  .bd-consola-redactando::after {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* ==========================================================
+   ARCHIVO TP2 - CSS original conservado segun la consigna
+   ========================================================== */
 
 /* ===== CONTAINER (TP2 - CSS original conservado, reemplazado por el .container de Bootstrap en TP3) =====
    NOTA: .container es una clase nativa de Bootstrap y la usan todas las secciones.
@@ -256,16 +889,6 @@ img {
 }
 ===== FIN CÓMO FUNCIONA TP2 ===== */
 
-/* Hover de las cards: se conserva activo porque Bootstrap no lo trae por defecto */
-.card {
-  transition: var(--transition);
-}
-
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12) !important;
-}
-
 /* ===== TEMAS (TP2 - CSS original conservado, reemplazado por utilidades de Bootstrap en TP3) =====
 .temas {
   padding: var(--spacing-xl) 0;
@@ -300,23 +923,6 @@ img {
   transition: var(--transition);
 }
 ===== FIN TEMAS TP2 ===== */
-
-/* Color e interaccion de las pills: Bootstrap resuelve la caja, esto aporta la identidad de AIda */
-.tema-pill {
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-borde-suave);
-  color: var(--color-heading);
-  font-weight: 500;
-  transition: var(--transition);
-  cursor: default;
-}
-
-.tema-pill:hover {
-  background-color: var(--color-primary) !important;
-  color: var(--color-white);
-  transform: scale(1.04);
-  box-shadow: 0 4px 12px rgba(0, 56, 101, 0.25) !important;
-}
 
 /* ===== ASISTENTE (TP2 - CSS original conservado, reemplazado por card e input-group de Bootstrap en TP3) =====
 .asistente {
@@ -373,273 +979,6 @@ img {
   font-weight: 300;
 }
 ===== FIN ASISTENTE TP2 ===== */
-
-/* ===== SWITCH DE TEMA ===== */
-.tema-switch {
-  border: none;
-  background: none;
-  padding: 0;
-  line-height: 0;
-  cursor: pointer;
-  border-radius: 50px;
-}
-
-.tema-switch:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 3px;
-}
-
-.tema-switch-pista {
-  position: relative;
-  display: block;
-  width: 62px;
-  height: 31px;
-  border-radius: 50px;
-  background-color: rgba(255, 255, 255, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.38);
-  transition: background-color 0.3s ease;
-}
-
-.tema-switch:hover .tema-switch-pista {
-  background-color: rgba(255, 255, 255, 0.26);
-}
-
-.tema-switch-bola {
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  display: grid;
-  place-items: center;
-  width: 23px;
-  height: 23px;
-  border-radius: 50%;
-  background-color: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
-  transition: transform 0.38s cubic-bezier(0.4, 0.15, 0.2, 1);
-}
-
-.tema-icono {
-  grid-area: 1 / 1;
-  width: 15px;
-  height: 15px;
-  transition: opacity 0.28s ease, transform 0.38s cubic-bezier(0.4, 0.15, 0.2, 1);
-}
-
-.tema-icono-sol {
-  color: var(--color-accent);
-}
-
-.tema-icono-luna {
-  color: var(--color-primary-dark);
-  opacity: 0;
-  transform: rotate(-70deg) scale(0.6);
-}
-
-/* En modo oscuro la bola se desliza al otro extremo y los iconos se intercambian */
-[data-bs-theme="dark"] .tema-switch-pista {
-  background-color: rgba(109, 179, 255, 0.22);
-  border-color: rgba(109, 179, 255, 0.5);
-}
-
-[data-bs-theme="dark"] .tema-switch-bola {
-  transform: translateX(31px);
-}
-
-[data-bs-theme="dark"] .tema-icono-sol {
-  opacity: 0;
-  transform: rotate(70deg) scale(0.6);
-}
-
-[data-bs-theme="dark"] .tema-icono-luna {
-  opacity: 1;
-  transform: rotate(0) scale(1);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .tema-switch-bola,
-  .tema-icono {
-    transition: none;
-  }
-}
-
-/* Menu hamburguesa: evita que el desplegable se pase de alto en pantallas chicas */
-@media (max-width: 1199.98px) {
-  .navbar-collapse {
-    max-height: 75vh;
-    overflow-y: auto;
-  }
-
-  .navbar-nav .nav-link {
-    padding-top: 0.6rem;
-    padding-bottom: 0.6rem;
-  }
-}
-
-/* ===== WIDGET FLOTANTE DEL CHAT ===== */
-.chat-launcher {
-  position: fixed;
-  right: 1.25rem;
-  bottom: 1.25rem;
-  z-index: 1045;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.6rem 1.2rem 0.6rem 0.6rem;
-  border: none;
-  border-radius: 50px;
-  background-color: var(--color-primary);
-  color: var(--color-white);
-  font-weight: 600;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
-  transition: var(--transition);
-}
-
-.chat-launcher:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
-}
-
-.chat-launcher-logo {
-  height: 38px;
-  width: 38px;
-  border-radius: 50%;
-  background-color: var(--color-white);
-  padding: 3px;
-}
-
-.chat-widget {
-  position: fixed;
-  right: 1.25rem;
-  bottom: 5.5rem;
-  z-index: 1046;
-  width: min(380px, calc(100vw - 2.5rem));
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  border-radius: var(--border-radius);
-  background-color: var(--color-bg);
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
-}
-
-.chat-widget[hidden] {
-  display: none;
-}
-
-.chat-widget-header {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.8rem 1rem;
-  background-color: var(--color-primary);
-  color: var(--color-white);
-}
-
-.chat-widget-logo {
-  height: 36px;
-  width: 36px;
-  border-radius: 50%;
-  background-color: var(--color-white);
-  padding: 3px;
-}
-
-.chat-sugerencias {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  padding: 0.7rem 1rem;
-  background-color: var(--color-bg-alt);
-}
-
-.chat-chip {
-  border: 1px solid rgba(0, 56, 101, 0.2);
-  border-radius: 50px;
-  background-color: var(--color-bg);
-  color: var(--color-primary);
-  font-size: 0.8rem;
-  padding: 0.25rem 0.8rem;
-  transition: var(--transition);
-}
-
-.chat-chip:hover {
-  background-color: var(--color-primary);
-  color: var(--color-white);
-}
-
-/* En celular el widget ocupa casi toda la pantalla y el launcher se reduce al logo */
-@media (max-width: 575.98px) {
-  .chat-widget {
-    right: 0.5rem;
-    left: 0.5rem;
-    bottom: 0.5rem;
-    width: auto;
-    height: min(85vh, 560px);
-  }
-
-  .chat-launcher-texto {
-    display: none;
-  }
-
-  .chat-launcher {
-    padding: 0.5rem;
-  }
-}
-
-/* Burbujas del chat: se conservan activas, Bootstrap no tiene un equivalente */
-.chat-messages {
-  background-color: var(--color-chat-bg);
-  padding: 1.2rem 1.2rem 0.8rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-  flex: 1 1 auto;
-  min-height: 220px;
-  max-height: 320px;
-  overflow-y: auto;
-}
-
-@media (max-width: 575.98px) {
-  .chat-messages {
-    max-height: none;
-  }
-}
-
-.message {
-  display: flex;
-  flex-direction: column;
-  max-width: 85%;
-}
-
-.message.received {
-  align-self: flex-start;
-}
-
-.message.sent {
-  align-self: flex-end;
-}
-
-.bubble {
-  background: var(--color-surface);
-  padding: 0.6rem 1rem;
-  border-radius: 18px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
-  font-size: 0.95rem;
-  line-height: 1.5;
-  border-bottom-left-radius: 4px;
-}
-
-.message.sent .bubble {
-  background: var(--color-primary-light);
-  color: var(--color-white);
-  border-bottom-right-radius: 4px;
-  border-bottom-left-radius: 18px;
-}
-
-.time {
-  font-size: 0.7rem;
-  color: var(--color-text-light);
-  margin-top: 0.2rem;
-  padding: 0 0.4rem;
-}
 
 /* ===== CHAT INPUT (TP2 - CSS original conservado, reemplazado por input-group de Bootstrap en TP3) =====
 .chat-input {
@@ -789,23 +1128,7 @@ img {
 }
 ===== FIN FOOTER TP2 ===== */
 
-/* Interaccion de los iconos sociales: se conserva activa, Bootstrap no la trae */
-.footer-social-link {
-  text-decoration: none;
-  opacity: 0.7;
-  transition: var(--transition);
-  display: inline-block;
-}
-
-.footer-social-link:hover {
-  opacity: 1;
-  transform: scale(1.1);
-  color: var(--color-white);
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 900px) {
-  /* Responsive del hero TP2 (conservado, reemplazado por grid de Bootstrap en TP3)
+/* Responsive del hero TP2 (conservado, reemplazado por grid de Bootstrap en TP3)
   .hero-text h1 {
     font-size: 2.4rem;
   }
@@ -821,7 +1144,7 @@ img {
   }
   */
 
-  /* Responsive de cards y panel TP2 (conservado, reemplazado por las breakpoints de Bootstrap en TP3)
+/* Responsive de cards y panel TP2 (conservado, reemplazado por las breakpoints de Bootstrap en TP3)
   .cards-grid {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   }
@@ -836,16 +1159,14 @@ img {
     max-width: 300px;
   }
   */
-}
 
-@media (max-width: 600px) {
-  /* Padding del container TP2 (conservado, ahora lo maneja el gutter de Bootstrap)
+/* Padding del container TP2 (conservado, ahora lo maneja el gutter de Bootstrap)
   .container {
     padding: 0 var(--spacing-md);
   }
   */
 
-  /* Responsive del header/nav TP2 (conservado, reemplazado por Bootstrap navbar en TP3)
+/* Responsive del header/nav TP2 (conservado, reemplazado por Bootstrap navbar en TP3)
   .header-content {
     flex-direction: column;
     align-items: stretch;
@@ -875,7 +1196,7 @@ img {
   }
   */
 
-  /* Responsive del hero TP2 (conservado, reemplazado por Bootstrap en TP3)
+/* Responsive del hero TP2 (conservado, reemplazado por Bootstrap en TP3)
   .hero {
     min-height: auto;
     padding: var(--spacing-lg) 0;
@@ -890,7 +1211,7 @@ img {
   }
   */
 
-  /* Responsive de cards, temas y chat TP2 (conservado, reemplazado por las breakpoints de Bootstrap en TP3)
+/* Responsive de cards, temas y chat TP2 (conservado, reemplazado por las breakpoints de Bootstrap en TP3)
   .cards-grid {
     grid-template-columns: 1fr;
   }
@@ -905,11 +1226,7 @@ img {
   }
   */
 
-  .tema-pill {
-    font-size: 0.9rem;
-  }
-
-  /* Responsive del footer TP2 (conservado, reemplazado por flex-column/flex-md-row de Bootstrap en TP3)
+/* Responsive del footer TP2 (conservado, reemplazado por flex-column/flex-md-row de Bootstrap en TP3)
   .footer-content {
     flex-direction: column;
     text-align: center;
@@ -923,9 +1240,3 @@ img {
     height: 50px;
   }
   */
-}
-
-.nav-link.active {
-  color: var(--color-accent) !important;
-  font-weight: 600;
-}

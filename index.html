@@ -32,7 +32,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
 
@@ -95,15 +95,11 @@
     </script>
   </head>
   <body>
-    <nav class="navbar navbar-expand-xl navbar-dark sticky-top shadow-sm" style="background-color: var(--color-primary);">
+    <nav class="navbar navbar-expand-xl sticky-top bd-navbar">
       <div class="container">
         <a class="navbar-brand d-flex align-items-center gap-2" href="#inicio">
-          <img
-            src="img/logoAIda.png"
-            alt="Logo de la UTN Facultad Regional Tucumán"
-            style="height: 40px; width: auto;"
-          />
-          <span class="fw-bold fs-4">AIda</span>
+          <img src="img/logoAIda.png" alt="Logo de la UTN Facultad Regional Tucumán" style="height: 28px; width: auto;" />
+          <span>AIda</span>
         </a>
 
         <button
@@ -119,7 +115,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navMenu">
-          <ul class="navbar-nav ms-auto mb-2 mb-xl-0 gap-xl-3 text-center">
+          <ul class="navbar-nav ms-auto mb-2 mb-xl-0">
             <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
             <li class="nav-item"><a class="nav-link" href="#como-funciona">Cómo funciona</a></li>
             <li class="nav-item"><a class="nav-link" href="#temas">Temas</a></li>
@@ -130,20 +126,20 @@
           </ul>
 
           <button
-            class="tema-switch ms-xl-3 mt-3 mt-xl-0"
+            class="bd-tema-switch ms-xl-3 mt-3 mt-xl-0"
             type="button"
             id="temaToggle"
             role="switch"
             aria-checked="false"
             aria-label="Cambiar entre modo claro y oscuro"
           >
-            <span class="tema-switch-pista" aria-hidden="true">
-              <span class="tema-switch-bola">
-                <svg class="tema-icono tema-icono-sol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+            <span class="bd-tema-switch-pista" aria-hidden="true">
+              <span class="bd-tema-switch-bola">
+                <svg class="bd-tema-icono bd-tema-icono-sol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
                   <circle cx="12" cy="12" r="4.2" fill="currentColor" stroke="none" />
                   <path d="M12 1.8v2.4M12 19.8v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M1.8 12h2.4M19.8 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7" />
                 </svg>
-                <svg class="tema-icono tema-icono-luna" viewBox="0 0 24 24" fill="currentColor">
+                <svg class="bd-tema-icono bd-tema-icono-luna" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M21 12.9A9.1 9.1 0 1 1 11.1 3a7.1 7.1 0 0 0 9.9 9.9z" />
                 </svg>
               </span>
@@ -154,317 +150,241 @@
     </nav>
 
     <main>
-      <section
-        id="inicio"
-        class="d-flex align-items-center text-white"
-        style="
-          min-height: 80vh;
-          background: linear-gradient(135deg, rgba(0, 56, 101, 0.85) 0%, rgba(0, 56, 101, 0.65) 100%),
-            url('img/PortadaAIda.jpg');
-          background-size: cover;
-          background-position: center center;
-        "
-      >
-        <div class="container py-5">
-          <div class="row">
-            <div class="col-lg-7">
-              <h1 class="display-4 fw-bold mb-3">
+      <section id="inicio" class="bd-portada">
+        <div class="container">
+          <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+              <h1 class="bd-portada-titulo">
                 AIda, el asistente institucional de la UTN FRT
               </h1>
-              <p class="lead mb-4">
+              <p class="bd-portada-bajada">
                 Sistema de gestión de consultas y conocimiento académico con panel
                 web y asistente conversacional basado en IA para la Facultad
                 Regional Tucumán.
               </p>
-              <a href="#asistente" class="btn btn-warning btn-lg rounded-pill fw-semibold px-4">
+              <a href="#asistente" class="bd-btn bd-btn-primario" id="portadaCta">
                 Consultar ahora
               </a>
             </div>
+
+            <div class="col-lg-6">
+              <figure class="bd-portada-figura mb-0">
+                <img src="img/PortadaAIda.jpg" alt="Estudiantes en la Facultad Regional Tucumán" />
+              </figure>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="como-funciona" class="py-5" style="background-color: var(--color-bg);">
+      <section id="como-funciona" class="bd-seccion bd-superficie">
         <div class="container">
-          <h2 class="text-center fw-bold mb-5" style="color: var(--color-heading);">
-            Cómo funciona
-          </h2>
+          <h2 class="bd-seccion-titulo">Cómo funciona</h2>
+          <p class="bd-seccion-bajada">
+            Tres reglas definen cómo AIda resuelve una consulta.
+          </p>
 
-          <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div class="row row-cols-1 row-cols-md-3 g-3">
             <div class="col">
-              <article
-                class="card h-100 text-center border-0 shadow-sm"
-                style="background-color: var(--color-bg-alt); border-left: 6px solid var(--color-primary-light) !important;"
-              >
-                <div class="card-body p-4">
-                  <div class="fs-1 mb-2">📊</div>
-                  <h3 class="card-title h5 fw-bold" style="color: var(--color-heading);">
-                    Datos exactos
-                  </h3>
-                  <p class="card-text small text-body-secondary">
-                    Fechas de mesas, correlativas y aranceles se resuelven por
-                    consulta directa a la base de datos, no por generación de texto.
-                  </p>
-                </div>
+              <article class="bd-card">
+                <span class="bd-card-indice">01</span>
+                <h3 class="bd-card-titulo">Datos exactos</h3>
+                <p class="bd-card-texto">
+                  Fechas de mesas, correlativas y aranceles se resuelven por
+                  consulta directa a la base de datos, no por generación de texto.
+                </p>
               </article>
             </div>
 
             <div class="col">
-              <article
-                class="card h-100 text-center border-0 shadow-sm"
-                style="background-color: var(--color-bg-alt); border-left: 6px solid var(--color-primary-light) !important;"
-              >
-                <div class="card-body p-4">
-                  <div class="fs-1 mb-2">📄</div>
-                  <h3 class="card-title h5 fw-bold" style="color: var(--color-heading);">
-                    Procedimientos y reglamentos
-                  </h3>
-                  <p class="card-text small text-body-secondary">
-                    Se responden recuperando el documento oficial correspondiente,
-                    citando siempre la fuente y su fecha de actualización.
-                  </p>
-                </div>
+              <article class="bd-card">
+                <span class="bd-card-indice">02</span>
+                <h3 class="bd-card-titulo">Procedimientos y reglamentos</h3>
+                <p class="bd-card-texto">
+                  Se responden recuperando el documento oficial correspondiente,
+                  citando siempre la fuente y su fecha de actualización.
+                </p>
               </article>
             </div>
 
             <div class="col">
-              <article
-                class="card h-100 text-center border-0 shadow-sm"
-                style="background-color: var(--color-bg-alt); border-left: 6px solid var(--color-primary-light) !important;"
-              >
-                <div class="card-body p-4">
-                  <div class="fs-1 mb-2">🛑</div>
-                  <h3 class="card-title h5 fw-bold" style="color: var(--color-heading);">
-                    Política de abstención
-                  </h3>
-                  <p class="card-text small text-body-secondary">
-                    Si el asistente no tiene evidencia suficiente, no inventa una
-                    respuesta: deriva la consulta al panel institucional.
-                  </p>
-                </div>
+              <article class="bd-card">
+                <span class="bd-card-indice">03</span>
+                <h3 class="bd-card-titulo">Política de abstención</h3>
+                <p class="bd-card-texto">
+                  Si el asistente no tiene evidencia suficiente, no inventa una
+                  respuesta: deriva la consulta al panel institucional.
+                </p>
               </article>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="temas" class="py-5" style="background-color: var(--color-bg-alt);">
+      <section id="temas" class="bd-seccion">
         <div class="container">
-          <h2 class="text-center fw-bold mb-5" style="color: var(--color-heading);">
-            Temas que cubre
-          </h2>
+          <h2 class="bd-seccion-titulo">Temas que cubre</h2>
+          <p class="bd-seccion-bajada">
+            Consultas que AIda resuelve sobre información pública institucional.
+          </p>
 
-          <ul class="list-unstyled d-flex flex-wrap justify-content-center gap-3 mb-0">
-            <li class="tema-pill rounded-pill px-4 py-2 shadow-sm">
-              📅 Mesas de examen
-            </li>
-            <li class="tema-pill rounded-pill px-4 py-2 shadow-sm">
-              📝 Inscripciones
-            </li>
-            <li class="tema-pill rounded-pill px-4 py-2 shadow-sm">
-              🔗 Correlativas
-            </li>
-            <li class="tema-pill rounded-pill px-4 py-2 shadow-sm">
-              📋 Trámites administrativos
-            </li>
-            <li class="tema-pill rounded-pill px-4 py-2 shadow-sm">
-              🎓 Ingreso de nuevos estudiantes
-            </li>
-            <li class="tema-pill rounded-pill px-4 py-2 shadow-sm">
-              🗓️ Calendario académico
-            </li>
+          <ul class="list-unstyled row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-2 mb-0">
+            <li class="col"><span class="bd-tema">Mesas de examen</span></li>
+            <li class="col"><span class="bd-tema">Inscripciones</span></li>
+            <li class="col"><span class="bd-tema">Correlativas</span></li>
+            <li class="col"><span class="bd-tema">Trámites administrativos</span></li>
+            <li class="col"><span class="bd-tema">Ingreso de nuevos estudiantes</span></li>
+            <li class="col"><span class="bd-tema">Calendario académico</span></li>
           </ul>
         </div>
       </section>
 
-      <section id="asistente" class="py-5 text-center" style="background-color: var(--color-bg);">
+      <section id="asistente" class="bd-seccion bd-superficie">
         <div class="container">
-          <h2 class="fw-bold mb-3" style="color: var(--color-heading);">
-            Asistente conversacional
-          </h2>
-          <p class="text-body-secondary mx-auto mb-5" style="max-width: 600px;">
+          <h2 class="bd-seccion-titulo">Asistente conversacional</h2>
+          <p class="bd-seccion-bajada">
             Consultá las 24 horas, los 7 días de la semana. El asistente te
             responderá con información oficial y te derivará al panel si es
             necesario.
           </p>
 
-          <button
-            class="btn btn-lg rounded-pill fw-semibold px-4 text-white"
-            type="button"
-            id="chatAbrirSeccion"
-            style="background-color: var(--color-primary);"
-          >
-            💬 Abrir el chat virtual
+          <button class="bd-btn bd-btn-primario" type="button" id="chatAbrirSeccion">
+            Abrir la consola del asistente
           </button>
-
-          <p class="small text-body-secondary mt-3 mb-0">
-            También podés abrirlo desde el botón flotante, abajo a la derecha.
+          <p class="bd-card-texto mt-3 mb-0">
+            También está disponible en el botón fijo, abajo a la derecha.
           </p>
         </div>
       </section>
 
-      <section id="panel" class="py-5 text-center" style="background-color: var(--color-bg-alt);">
+      <section id="panel" class="bd-seccion">
         <div class="container">
-          <h2 class="fw-bold mb-3" style="color: var(--color-heading);">
-            Panel institucional
-          </h2>
-          <p class="text-body-secondary mx-auto mb-5" style="max-width: 700px;">
+          <h2 class="bd-seccion-titulo">Panel institucional</h2>
+          <p class="bd-seccion-bajada">
             Herramienta para Bedelía, Alumnado y Secretaría: carga y
             actualización de información oficial, bandeja de consultas
             priorizadas derivadas por el asistente, y métricas de uso.
           </p>
 
-          <div class="row justify-content-center g-4">
-            <div class="col-10 col-sm-6 col-lg-3">
-              <div class="card h-100 border-0 shadow-sm align-items-center p-4">
-                <span class="fs-1">📥</span>
-                <span class="fw-semibold mt-2" style="color: var(--color-heading);">
-                  Carga de datos
-                </span>
-              </div>
+          <div class="row row-cols-1 row-cols-sm-3 g-3">
+            <div class="col">
+              <article class="bd-card">
+                <h3 class="bd-card-titulo">Carga de datos</h3>
+                <p class="bd-card-texto">
+                  Alta y actualización de la información oficial con versionado y
+                  vigencia.
+                </p>
+              </article>
             </div>
 
-            <div class="col-10 col-sm-6 col-lg-3">
-              <div class="card h-100 border-0 shadow-sm align-items-center p-4">
-                <span class="fs-1">📩</span>
-                <span class="fw-semibold mt-2" style="color: var(--color-heading);">
-                  Bandeja de consultas
-                </span>
-              </div>
+            <div class="col">
+              <article class="bd-card">
+                <h3 class="bd-card-titulo">Bandeja de consultas</h3>
+                <p class="bd-card-texto">
+                  Consultas derivadas por el asistente, ordenadas por urgencia y
+                  frecuencia.
+                </p>
+              </article>
             </div>
 
-            <div class="col-10 col-sm-6 col-lg-3">
-              <div class="card h-100 border-0 shadow-sm align-items-center p-4">
-                <span class="fs-1">📈</span>
-                <span class="fw-semibold mt-2" style="color: var(--color-heading);">
-                  Métricas y reportes
-                </span>
-              </div>
+            <div class="col">
+              <article class="bd-card">
+                <h3 class="bd-card-titulo">Métricas y reportes</h3>
+                <p class="bd-card-texto">
+                  Preguntas más frecuentes, temas sin cobertura y tiempos de
+                  respuesta.
+                </p>
+              </article>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="faq" class="py-5" style="background-color: var(--color-bg);">
+      <section id="faq" class="bd-seccion bd-superficie">
         <div class="container">
-          <h2 class="text-center fw-bold mb-5" style="color: var(--color-heading);">
-            Preguntas frecuentes
-          </h2>
+          <h2 class="bd-seccion-titulo">Preguntas frecuentes</h2>
+          <p class="bd-seccion-bajada">
+            Lo que más se consulta sobre el alcance del asistente.
+          </p>
 
-          <div class="accordion mx-auto" id="faqAccordion" style="max-width: 760px;"></div>
+          <div class="accordion" id="faqAccordion" style="max-width: 760px;"></div>
         </div>
       </section>
     </main>
 
-    <footer id="equipo" class="text-white py-4" style="background-color: var(--color-primary-dark);">
+    <footer id="equipo" class="bd-pie">
       <div class="container">
-        <div
-          class="d-flex flex-column flex-md-row justify-content-between align-items-center text-center text-md-start gap-3"
-        >
-          <div>
-            <p class="fw-semibold fs-6 mb-1">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+          <div class="text-center text-md-start">
+            <p class="mb-1" style="color: var(--ink); font-weight: 500;">
               Universidad Tecnológica Nacional – Facultad Regional Tucumán
             </p>
-            <p class="fw-light opacity-75 mb-1">
-              Tecnicatura Universitaria en Programación – Trabajo Final
-            </p>
-            <p class="fw-light opacity-75 small mb-2">
-              Lazarte, Jorge Exequiel · Díaz, Juan Gabriel
-            </p>
+            <p class="mb-1">Tecnicatura Universitaria en Programación – Trabajo Final</p>
+            <p class="mb-2 bd-mono">Lazarte, Jorge Exequiel · Díaz, Juan Gabriel</p>
 
             <div class="d-flex gap-3 justify-content-center justify-content-md-start">
-              <a href="#" class="footer-social-link fs-4 text-white" aria-label="Instagram">📷</a>
-              <a href="#" class="footer-social-link fs-4 text-white" aria-label="Twitter">🐦</a>
-              <a href="#" class="footer-social-link fs-4 text-white" aria-label="LinkedIn">🔗</a>
+              <a href="#" class="bd-pie-enlace" aria-label="Instagram">Instagram</a>
+              <a href="#" class="bd-pie-enlace" aria-label="Twitter">Twitter</a>
+              <a href="#" class="bd-pie-enlace" aria-label="LinkedIn">LinkedIn</a>
             </div>
           </div>
 
-          <div>
-            <img
-              src="img/logoAIda.png"
-              alt="Logo de AIda, asistente institucional de la UTN FRT"
-              class="opacity-75"
-              style="height: 60px; width: auto;"
-            />
-          </div>
+          <img
+            src="img/logoAIda.png"
+            alt="Logo de AIda, asistente institucional de la UTN FRT"
+            style="height: 48px; width: auto;"
+          />
         </div>
       </div>
     </footer>
 
-    <!-- Widget flotante del asistente -->
     <button
-      class="chat-launcher"
+      class="bd-consola-launcher"
       type="button"
       id="chatLauncher"
       aria-expanded="false"
       aria-controls="chatWidget"
     >
-      <img src="img/logoAIda.png" alt="" class="chat-launcher-logo" />
-      <span class="chat-launcher-texto">Chat virtual</span>
+      <img src="img/logoAIda.png" alt="" class="bd-consola-launcher-logo" />
+      <span class="bd-consola-launcher-texto">Consultar a AIda</span>
     </button>
 
     <div
-      class="chat-widget"
+      class="bd-consola"
       id="chatWidget"
       role="dialog"
       aria-modal="false"
       aria-labelledby="chatWidgetTitulo"
       hidden
     >
-      <div class="chat-widget-header">
-        <img src="img/logoAIda.png" alt="" class="chat-widget-logo" />
-        <div class="flex-grow-1">
-          <p class="fw-bold mb-0" id="chatWidgetTitulo">AIda</p>
-          <p class="small opacity-75 mb-0">● En línea</p>
-        </div>
-        <button
-          class="btn-close btn-close-white"
-          type="button"
-          id="chatCerrar"
-          aria-label="Cerrar el chat"
-        ></button>
+      <div class="bd-consola-header">
+        <p class="bd-consola-titulo flex-grow-1" id="chatWidgetTitulo">AIda</p>
+        <span class="bd-consola-estado">en línea</span>
+        <button class="bd-consola-cerrar" type="button" id="chatCerrar" aria-label="Cerrar la consola">✕</button>
       </div>
 
       <div
-        class="chat-messages"
+        class="bd-consola-registro"
         id="chatMessages"
         role="log"
         aria-live="polite"
         aria-label="Conversación con AIda"
-      >
-        <div class="message received">
-          <div class="bubble">
-            Hola, soy AIda. Puedo ayudarte con mesas de examen, inscripciones,
-            correlativas y trámites. ¿Qué necesitás?
-          </div>
-          <span class="time">10:30</span>
-        </div>
+      ></div>
+
+      <div class="bd-consola-sugerencias" id="chatSugerencias">
+        <button class="bd-consola-chip" type="button">¿Cuándo son las mesas?</button>
+        <button class="bd-consola-chip" type="button">Inscripciones</button>
+        <button class="bd-consola-chip" type="button">Correlativas</button>
+        <button class="bd-consola-chip" type="button">Trámites</button>
       </div>
 
-      <div class="chat-sugerencias" id="chatSugerencias">
-        <button class="chat-chip" type="button">¿Cuándo son las mesas?</button>
-        <button class="chat-chip" type="button">Inscripciones</button>
-        <button class="chat-chip" type="button">Correlativas</button>
-        <button class="chat-chip" type="button">Trámites</button>
-      </div>
-
-      <div class="input-group border-top">
+      <div class="bd-consola-entrada">
         <input
           type="text"
-          class="form-control border-0 shadow-none py-3"
-          placeholder="Escribí tu consulta..."
+          placeholder="Escribí tu consulta"
           aria-label="Escribí tu consulta"
           id="chatInput"
         />
-        <button
-          class="btn text-white px-4"
-          type="button"
-          aria-label="Enviar consulta"
-          style="background-color: var(--color-primary);"
-          id="chatSendBtn"
-        >
-          ➤
-        </button>
+        <button type="button" id="chatSendBtn" aria-label="Enviar consulta">Enviar</button>
       </div>
     </div>
 
