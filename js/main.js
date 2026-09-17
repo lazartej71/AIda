@@ -1,11 +1,9 @@
-
-
 // Quita tildes y pasa a minúsculas para que "trámite" y "tramite" coincidan igual
 function normalizarTexto(texto) {
   return texto
     .toLowerCase()
     .normalize("NFD")
-    .replace(/[̀-ͯ]/g, "");
+    .replace(/[\u0300-\u036f]/g, "");
 }
 
 function inicializarChat() {
@@ -141,11 +139,6 @@ function inicializarWidgetChat() {
   });
 }
 
-
-
-
-//navbar para resaltar en la seccion que estamos
-
 const preguntasFrecuentes = [
   {
     pregunta: "¿Qué es AIda?",
@@ -272,8 +265,6 @@ function inicializarNavbarActivo() {
 
   secciones.forEach((seccion) => observador.observe(seccion));
 }
-
-//  FUNCIONALIDAD: Cerrar el menú mobile al elegir una sección
 
 function inicializarCierreMenuMobile() {
   const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
