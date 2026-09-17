@@ -1,0 +1,7 @@
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Material de consulta que no forma parte del sitio
+DESIGN-2.md
+/styles.css
